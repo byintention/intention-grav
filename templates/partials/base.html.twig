@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}">
+    <head>
+    {% block head %}
+        <meta charset="utf-8" />
+        <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% include 'partials/metadata.html.twig' ignore missing %}
+        <link rel="canonical" href="{{ page.url(true, true) }}" />
+    {% endblock %}
+
+    {% block stylesheets %}
+        {{ assets.css()|raw }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ assets.js('head')|raw }}
+    {% endblock %}
+    {% include 'partials/colours-styles.html.twig' %}
+    </head>
+    <body class="{{ page.header.body_classes }}">
+
+        <div class="wrap {% if page.header.brand %} {{ page.header.brand|e('html_attr') }}{% endif %}">
+            
+    {% block header %}
+        {% include 'partials/header.html.twig' %}
+    {% endblock %}
+
+    <main id="content">
+    {% block body %}
+        {% block content %}{% endblock %}
+    {% endblock %}
+    </main>
+    
+    {% block footer %}
+        {% include 'partials/footer.html.twig' %}
+    {% endblock %}
+
+    {% block bottom %}
+        {{ assets.js('bottom')|raw }}
+    {% endblock %}
+
+        </div>
+    </body>
+</html>

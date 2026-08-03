@@ -1,0 +1,14 @@
+{% set colours = theme_var('colours') %}
+{% if colours is iterable and colours|length %}
+<style id="practice-colours">
+{% for item in colours %}
+{% set label = item.label|default('')|trim %}
+{% set value = item.colour|default('')|trim %}
+{% if label and value %}
+{% set slug = label|hyphenize %}
+.bg-{{ slug|e('html_attr') }} { background-color: {{ value|e }}; }
+.text-{{ slug|e('html_attr') }} { color: {{ value|e }}; }
+{% endif %}
+{% endfor %}
+</style>
+{% endif %}

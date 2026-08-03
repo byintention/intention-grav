@@ -1,0 +1,123 @@
+name: The Practice Accrete
+slug: thepractice-accrete
+type: theme
+version: 0.2.0
+description: Standalone Grav 2 theme for The Practice
+icon: paint-brush
+author:
+  name: The Practice
+  email: nick@the-practice.co.uk
+homepage: https://the-practice.co.uk
+keywords: thepractice, accrete, theme, custom
+license: MIT
+compatibility:
+  grav: ['2.0']
+dependencies:
+  - { name: grav, version: '>=2.0.0' }
+
+form:
+  validation: loose
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        global:
+          type: tab
+          title: Global Settings
+          fields:
+            contact_section:
+              type: section
+              title: Contact Information
+              underline: true
+
+            phone:
+              type: text
+              label: Phone
+              help: Primary contact phone number.
+
+            email:
+              type: email
+              label: Email
+              help: Primary contact email address.
+
+            address:
+              type: textarea
+              label: Address
+              help: Physical address displayed in the footer.
+              rows: 3
+
+            social_section:
+              type: section
+              title: Social Media
+              underline: true
+
+            social.facebook:
+              type: url
+              label: Facebook
+              help: Full URL to your Facebook page or profile.
+
+            social.twitter:
+              type: url
+              label: Twitter / X
+              help: Full URL to your Twitter/X profile.
+
+            social.instagram:
+              type: url
+              label: Instagram
+              help: Full URL to your Instagram profile.
+
+            social.linkedin:
+              type: url
+              label: LinkedIn
+              help: Full URL to your LinkedIn profile or company page.
+
+            notices_section:
+              type: section
+              title: Notices & popups
+              underline: true
+
+            entry_popup_text:
+              type: moderneditor
+              label: Entry popup text
+              help: Shown in the site entry / HCP gate popup.
+              markdown_enabled: false
+              xss_check: false
+              height: 220
+              menubar: false
+
+            external_link_popup_text:
+              type: moderneditor
+              label: External link popup text
+              help: Shown when a visitor follows an external link.
+              markdown_enabled: false
+              xss_check: false
+              height: 220
+              menubar: false
+
+            adverse_event_text:
+              type: moderneditor
+              label: Adverse event text
+              help: Adverse event reporting copy in the site footer.
+              markdown_enabled: false
+              xss_check: false
+              height: 220
+              menubar: false
+
+            colours_section:
+              type: section
+              title: Colours
+              underline: true
+
+            colours:
+              type: list
+              label: Colours
+              help: Named brand colours for use across the site.
+              style: vertical
+              fields:
+                .label:
+                  type: text
+                  label: Label
+                .colour:
+                  type: colorpicker
+                  label: Colour

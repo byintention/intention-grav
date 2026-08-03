@@ -1,0 +1,13 @@
+enabled: true
+phone: ''
+email: ''
+address: ''
+social:
+  facebook: ''
+  twitter: ''
+  instagram: ''
+  linkedin: ''
+entry_popup_text: ''
+external_link_popup_text: ''
+adverse_event_text: ''
+colours: []

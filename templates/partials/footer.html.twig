@@ -1,0 +1,49 @@
+    </main>	
+
+    <div id="adverseFooter" class="adverseFooter">
+        <div class="container">
+            <div class="text smallText">
+                {% set adverse_event_text = theme_var('adverse_event_text') %}
+                {% if adverse_event_text %}{{ adverse_event_text|bb_markdown|raw }}{% endif %}
+                <div class="jobCode">{% if page.header.job_code %}{{ page.header.job_code|e }}{% endif %}</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer" class="clear">
+        <div class="container">
+            <div class="six columns">
+                <img loading="lazy" src="{{ url('theme://images/logo.png') }}" alt="" title="">
+            </div>
+            <div class="six columns nav">
+                <nav class="clearfix">
+                    <ul id="menu-footer-4" class="menu">
+                        <li id="menu-item-170" class="external"><a href="https://www.thorntonross.com/privacy-policy">Privacy Policy</a></li>
+                        <li id="menu-item-352" class="external"><a href="https://www.thorntonross.com/terms-conditions">Terms and Conditions</a></li>
+                    </ul>	
+                </nav>
+            </div>
+        
+            <div class="btt twelve columns">
+                <a href="#header">Back to the top<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><path  d="M2.582,13.891c-0.272,0.268-0.709,0.268-0.979,0s-0.271-0.701,0-0.969l7.908-7.83c0.27-0.268,0.707-0.268,0.979,0l7.908,7.83c0.27,0.268,0.27,0.701,0,0.969c-0.271,0.268-0.709,0.268-0.978,0L10,6.75L2.582,13.891z"/></svg></a>	
+            </div>
+            
+        </div>
+    </footer>	
+    </div>
+
+
+    <div class="practicePopup popHide">
+        <div class="practicePopupHcp">
+            {% set entry_popup_text = theme_var('entry_popup_text') %}
+            {% if entry_popup_text %}{{ entry_popup_text|bb_markdown|raw }}{% endif %}
+        </div>
+    </div>
+
+    <div class="practicePopupExternal popHide">
+        <div class="practicePopupLink">
+            <button class="popClose">Close modal</button>
+            {% set external_link_popup_text = theme_var('external_link_popup_text') %}
+            {% if external_link_popup_text %}{{ external_link_popup_text|bb_markdown|raw }}{% endif %}
+        </div>
+    </div>

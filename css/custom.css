@@ -1,0 +1,20 @@
+/* Project overrides on top of main.css / style.css */
+
+/* Skeleton sets sub/sup { height: 0 } which gets clipped by overflow:hidden boxes */
+.boxes .box {
+  overflow: visible;
+}
+
+sup {
+  vertical-align: super;
+  height: auto;
+  bottom: auto;
+  font-size: 65%;
+}
+
+sub {
+  vertical-align: sub;
+  height: auto;
+  top: auto;
+  font-size: 65%;
+}
