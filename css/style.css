@@ -390,6 +390,18 @@ div span.wpcf7-not-valid-tip {
   padding: 0.5rem 1rem 0.5rem 2rem;
 }
 
+.warning {
+  background-color: rgb(255, 244, 229.5);
+  background-image: url(../images/icon-info.svg);
+  background-position: 0.5rem 0.75rem;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  border-left: 3px solid #c97800;
+  color: #8a5200;
+  font-size: 1rem;
+  padding: 0.5rem 1rem 0.5rem 2rem;
+}
+
 span.wpcf7-not-valid-tip {
   display: block;
 }
@@ -3662,4 +3674,8 @@ sub {
   height: auto;
   top: auto;
   font-size: 65%;
+}
+
+@view-transition {
+	navigation: auto;
 }

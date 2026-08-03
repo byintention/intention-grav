@@ -242,3 +242,16 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 });
+
+// Wrap CF7 selects for dropdown arrow styling (was jQuery window load)
+window.addEventListener('load', function () {
+	document.querySelectorAll('.wpcf7 select').forEach(function (select) {
+		if (select.parentElement && select.parentElement.classList.contains('select-input')) {
+			return;
+		}
+		var wrap = document.createElement('div');
+		wrap.className = 'select-input';
+		select.parentNode.insertBefore(wrap, select);
+		wrap.appendChild(select);
+	});
+});
