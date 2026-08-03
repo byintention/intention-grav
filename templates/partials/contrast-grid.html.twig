@@ -1,0 +1,47 @@
+{#
+  Contrast matrix for styletest.
+  Expects: colours (list of {label, hex}), threshold (float), size_class (string), caption (string)
+#}
+{% set fail_icon %}
+<svg fill="#A8A8A8" width="20px" height="20px" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m17.738 17.738c-8.5547 8.5586-13.363 20.164-13.363 32.266 0 12.102 4.8086 23.711 13.363 32.266 8.5586 8.5586 20.164 13.367 32.266 13.367 12.102 0 23.711-4.8086 32.266-13.367 8.5586-8.5547 13.367-20.164 13.367-32.266 0-12.102-4.8086-23.707-13.367-32.266-8.5625-8.543-20.168-13.344-32.266-13.344s-23.699 4.8008-32.266 13.344zm5.0781 59.449 0.003906 0.003906c-6.707-6.7266-10.691-15.695-11.188-25.18-0.5-9.4883 2.5273-18.82 8.4961-26.211l54.07 54.07c-7.3867 5.9688-16.723 8.9961-26.207 8.5039-9.4883-0.49609-18.453-4.4805-25.184-11.184zm56.52-2.3398-54.176-54.176c9.9062-8.3672 23.363-11.176 35.785-7.4688 12.426 3.707 22.145 13.426 25.852 25.852 3.707 12.422 0.89844 25.879-7.4688 35.785z"/></svg>
+{% endset %}
+<div class="container row {{ size_class|e('html_attr') }}">
+    <p class="centre">{{ caption|e }}</p>
+    {% if colours|length %}
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                {% for col in colours %}
+                    <th>
+                        <strong>{{ col.label|e }}</strong><br>
+                        <span class="smallText">{{ col.hex|e }}</span><br>
+                        <span class="tableHex" style="color: {{ col.hex|e('html_attr') }}">Aa</span>
+                    </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody class="contrastTableBody">
+            {% for row in colours %}
+                <tr>
+                    <td class="strong">{{ row.label|e }}</td>
+                    {% for col in colours %}
+                        <td>
+                            {% if row.label != col.label %}
+                                {% set ratio = contrast_ratio(row.hex, col.hex)|round(2) %}
+                                {% if ratio >= threshold %}
+                                    <div style="background: {{ row.hex|e('html_attr') }};color: {{ col.hex|e('html_attr') }};" title="Contrast ratio is {{ ratio }}">Aa</div>
+                                {% else %}
+                                    <div title="Contrast ratio is {{ ratio }}">{{ fail_icon|raw }}</div>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p class="centre">Add colours in Theme options to populate this grid.</p>
+    {% endif %}
+</div>

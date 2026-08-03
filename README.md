@@ -8,10 +8,10 @@ No Quark inheritance. Page-builder content will use Badger Builder later.
 
 | Source | Destination |
 | --- | --- |
-| Compiled CSS | `css/main.css` and/or `css/style.css` (overrides in `css/custom.css`) |
+| Compiled CSS | `css/style.css` |
 | Fonts | `fonts/` |
 | Images / logos | `images/` |
-| JS | `js/main.js` (hooks in `js/custom.js`) |
+| JS | `js/main.js` |
 
 After copying CSS, fix `@font-face` / `url(...)` paths to `../fonts/...` if needed.
 
@@ -21,6 +21,25 @@ After copying CSS, fix `@font-face` / `url(...)` paths to `../fonts/...` if need
 - Chrome stubs: `templates/partials/header.html.twig`, `footer.html.twig`
 - Pages: `templates/default.html.twig` → `{{ page.content|raw }}`
 - Errors: `templates/error.html.twig`
+- Badger sections: `badger-builder/templates/sections/*.html.twig` (schemas in `badger-builder/panels/`)
+
+## New page templates
+
+With **Modern Editor** enabled, every new page template needs a matching blueprint or Admin hangs when creating/editing that page type (ME generates an override that `@extends` the template name; without a real blueprint that loops forever).
+
+1. Add Twig: `templates/{name}.html.twig`
+2. Add blueprint: `blueprints/pages/{name}.yaml` (same `{name}`)
+
+Minimal blueprint stub:
+
+```yaml
+title: My Template
+'@extends':
+  type: default
+  context: blueprints://pages
+```
+
+Example: `templates/styletest.html.twig` + `blueprints/pages/styletest.yaml`.
 
 ## Config
 

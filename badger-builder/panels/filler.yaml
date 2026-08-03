@@ -1,0 +1,22 @@
+schema: 1
+id: filler
+label: Filler
+modified: 0
+twig: filler
+fields:
+  - name: filler_background
+    type: select
+    label: Background colour
+    default: transparent
+    width: half
+    options:
+      transparent: Transparent
+  - name: filler_size
+    type: select
+    label: Size
+    default: medium
+    width: half
+    options:
+      small: Small
+      medium: Medium
+      large: Large

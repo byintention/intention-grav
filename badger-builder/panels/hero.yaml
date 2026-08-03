@@ -1,0 +1,33 @@
+schema: 1
+id: hero
+label: Hero
+modified: 0
+twig: hero
+fields:
+  - name: hero_title
+    type: text
+    label: Title
+  - name: hero_body
+    type: markdown
+    label: Body
+    help: 'Markdown and inline HTML supported.'
+  - name: hero_image
+    type: page_media
+    label: Background image
+    help: "Pick from this page's media (upload on the Content tab)."
+  - name: hero_align
+    type: select
+    label: Text alignment
+    default: center
+    width: quarter
+    options:
+      left: Left
+      center: Center
+      right: Right
+  - name: hero_background
+    type: select
+    label: Background colour
+    default: transparent
+    width: quarter
+    options:
+      transparent: Transparent

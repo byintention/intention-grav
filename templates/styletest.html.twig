@@ -1,0 +1,740 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    <div class="styletest">
+
+        <div style="background: #333; padding: 1rem;">
+            <h1 class="centre" style="color: #fff;  margin:0;">Grid &amp; Style Test</h1>
+        </div>
+        
+        <div class="bb-panel-filler bb-panel-filler-large"></div>
+        
+        <div class="container">
+            
+            <div id="styletestSidebar" class="two columns smallText">
+                <h4>Contents</h4>
+                <div id="toc"></div>
+            </div>
+        
+            <div id="styletestContent" class="ten columns clearfix white">
+                    
+                <h2 id="palette">Palette</h2>
+
+                <hr>
+        
+                <div class="colours">
+                    {% set colours = theme_var('colours') %}
+                    {% if colours is iterable %}
+                        {% for item in colours %}
+                            {% set label = item.label|default('')|trim %}
+                            {% set hex = item.colour|default('')|trim %}
+                            {% if label and hex and label|lower != 'transparent' %}
+                                <div class="colour">
+                                    <div class="colourSwatch {{ label|hyphenize|e('html_attr') }}" style="background-color: {{ hex|e('html_attr') }}"></div>
+                                    {{ label|e }}<br><span class="smallText">{{ hex|e }}</span>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+        
+                <div class="bb-panel-filler bb-panel-filler-large"></div>
+        
+                <h2 id="headings">Headings</h2>
+
+                <hr>
+                
+                <h1>Heading 1</h1>
+                
+                <h2>Heading 2</h2>
+                
+                <h3>Heading 3</h3>
+                
+                <h4>Heading 4</h4>
+                
+                <h5>Heading 5</h5>
+        
+                <h6>Heading 6</h6>
+                
+                <div class="bb-panel-filler bb-panel-filler-large"></div>
+        
+                <h2 id="typography">Typography</h2>
+                <hr>
+                <p class="largeText">
+                    <strong>Nullam luctus sagittis urna.</strong> Vivamus nibh. Fusce
+                    ut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. 
+                    Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum 
+                    enim nibh ac massa. <span class="chip">.largeText</span>
+                </p> 
+                
+                <p>Base text - <strong>Strong</strong> - <em>Emphasis</em> - Lorem ipsum dolor sit amet,
+                consectetuer adipiscing elit. Suspendisse lectus nisl, semper sit amet, blandit at, lacinia 
+                et, sem. Sed pellentesque turpis ut risus. Nullam luctus sagittis urna. Vivamus nibh. Fusce
+                ut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. 
+                Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum 
+                enim nibh ac massa.</p>
+                
+                <p class="smallText">
+                    <strong>Nullam luctus sagittis urna. Vivamus nibh.</strong> Fusceut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum enim nibh ac massa. <span class="chip">.smallText</span>
+                </p>
+                
+                <br>
+                
+                <p><span class="chip">Chip</span> <span class="chip">Testing</span> <span class="chip">New chip</span></p>
+                
+                <br>
+                
+                <p class="clearfix">
+                    <a class="btn btn-primary" href="#">Anchor</a> 
+                    <button>Button</button> 
+                    <input class="btn" type="submit" value="Input" />
+                    <input class="" type="text" value="Input" style="display:inline-block;width:200px" />
+                </p>
+                
+                <br>
+                
+                <p class="left" style="background:#eee;padding:10px;">Left</p>
+                
+                <p class="right" style="background:#eee;padding:10px;">Right</p>
+                
+                <p class="clearance">Donec velit. Suspendisse rutrum nunc sed tellus. Maecenas interdum 
+                    placerat nulla. Etiam sit amet orci at lectus posuere nonummy. Praesent rutrum ante eget 
+                    nisl. Nulla bibendum sodales quam. Phasellus ipsum.</p>
+                
+                <br>
+                
+                <pre><code>Preformatted Code - Ut quod aspernatur modi est dolorum aut tempore maxime esse in quia.</code></pre>
+                
+                <br>
+                
+                <p>Abbreviation: <abbr lang="en" title="World Wide Web Consortium">W3C</abbr></p>	
+                
+        
+                <div class="bb-panel-filler bb-panel-filler-large"></div>
+                
+        
+                <h2 id="messages">Messages</h2>
+
+                <hr>	
+
+                <p class="positive">Positive message</p>
+                
+                <p class="negative">Negative message</p>
+                
+                <p class="info">Information message</p>
+                
+                <div class="bb-panel-filler bb-panel-filler-large"></div>
+                
+                <h2 id="lists">Lists</h2>
+
+                <hr>
+
+                <ul>
+                    <li>List item 1</li>
+                    <li>Velit Quos Voluptatem Quo Qui Adipisci Libero Quia Veritatis Et Eos Laudantium Dolorem Perferendis Ea Facilis Omnis Corrupti Ipsum Ut Suscipit Dolor Velit Suscipit Aut Sint Veniam Vero Temporibus Magni Atque Quaerat Repellendus Fuga Repellendus Voluptas Voluptatem Numquam Ipsum Modi Dolores Mollitia Est Pariatur Deleniti Aliquid Quo Culpa Ut Sit</li>
+                    <li>List item 3</li>
+                </ul>
+                
+                <ol>
+                    <li>List item 1</li>
+                    <li>Velit Quos Voluptatem Quo Qui Adipisci Libero Quia Veritatis Et Eos Laudantium Dolorem Perferendis Ea Facilis Omnis Corrupti Ipsum Ut Suscipit Dolor Velit Suscipit Aut Sint Veniam Vero Temporibus Magni Atque Quaerat Repellendus Fuga Repellendus Voluptas Voluptatem Numquam Ipsum Modi Dolores Mollitia Est Pariatur Deleniti Aliquid Quo Culpa Ut Sit</li>
+                    <li>List item 3</li>
+                </ol>
+                
+                <div class="bb-panel-filler bb-panel-filler-large"></div>
+        
+                <h2 id="quote">Blockquote</h2>
+
+                <hr>
+                
+                <blockquote><p>Etiam sit amet orci at lectus posuere nonummy. Praesent rutrum ante eget nisl. Nulla bibendum sodales quam. Phasellus ipsum.</p></blockquote>
+                                
+                <div class="bb-panel-filler bb-panel-filler-large"></div>
+                
+                <h2 id="forms">Example Form</h2>
+
+                <hr>
+
+                <div class="wpcf7">
+                    <form id="enquiry" action="" method="post" name="enquiry" class="wpcf7-form">
+                        <fieldset>
+                            <legend>Fieldset</legend>
+                            <div>
+                                <label for="name">Name:</label>
+                                <input id="name" type="text" name="name" />
+                            </div>
+                            <div>
+                                <label for="company">Company:</label>
+                                <input id="company" type="text" name="company" />
+                            </div>
+                            <div>
+                                <label for="email">Email:</label>
+                                <input id="email" type="text" name="email" /></div>
+                            <div>
+                                <label for="state">State:</label>
+                                <select name="state">
+                                    <option value="CA">California -- CA</option>
+                                    <option value="CO">Colorado -- CO</option>
+                                    <option value="CN">Connecticut -- CN</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="phone">Phone:</label>
+                                <input id="phone" type="text" name="phone" />
+                            </div>
+                            <div>
+                                <label>Your Enquiry:</label>
+                                <textarea id="body" cols="10" name="body" rows="4"></textarea>
+                            </div>
+                            <div>
+                                <span class="wpcf7-form-control-wrap" data-name="acceptance-828">
+                                    <span class="wpcf7-form-control wpcf7-acceptance optional">
+                                        <span class="wpcf7-list-item">
+                                            <label>
+                                                <input type="checkbox" name="acceptance-828" value="1" aria-invalid="false">
+                                                <span class="wpcf7-list-item-label">I agree with the thing</span>
+                                            </label>
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                            <div>
+                                <input id="send" type="submit" name="send" value="Send" />
+                            </div>
+                        </fieldset>	
+                    </form>
+
+                </div>
+                
+                <div class="bb-panel-filler bb-panel-filler-large"></div>
+                
+                <h2 id="exampletable">Example Table</h2>
+
+                <hr>
+
+                <table cellspacing="0" cellpadding="0" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Title</th>
+                            <th>Title</th>
+                            <th>Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data</td>
+                            <td>Data</td>
+                            <td>Data</td>
+                            <td>Data</td>
+                        </tr>
+                        <tr>
+                            <td>Data</td>
+                            <td>Data</td>
+                            <td>Data</td>
+                            <td>Data</td>
+                        </tr>
+                        <tr>
+                            <td>Data</td>
+                            <td>Data</td>
+                            <td>Data</td>
+                            <td>Data</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p>Donec velit. Suspendisse rutrum nunc sed tellus. Maecenas interdum placerat nulla. 
+                    Etiam sit amet orci at lectus posuere nonummy. Praesent rutrum ante eget nisl. 
+                    Nulla bibendum sodales quam. Phasellus ipsum.</p>
+                
+            
+                <div class="bb-panel-filler bb-panel-filler-large"></div>
+                
+                <h2 id="stylingclasses" class="">Classes for 'boxes' panel</h2>
+                
+                <hr>
+
+                <div class="container">
+                
+                    <div class="one-quarter column padded shadow white"> 
+                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">padded</span> <span class="chip">shadow</span></p>
+                        One Quarter, padded with a shadow
+                    </div>
+                
+                    <div class="three-quarter column padded shadow rounded white">
+                        <p><span class="chip">three-quarters</span> <span class="chip">column</span> <span class="chip">padded</span> <span class="chip">shadow</span> <span class="chip">rounded</span></p>
+                        Three Quarters, rounded corners, padded with a shadow
+                    </div>
+                    
+                    <div class="bb-panel-filler smallFill"> </div>
+                    
+                    <div class="one-quarter column navy padded" style="color: #fff;">
+                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">navy</span></p>
+                        One Quarter
+                    </div>
+                    
+                    <div class="one-quarter column blue padded" style="color: #fff;">
+                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">blue</span></p>
+                        One Quarter
+                    </div>
+                    
+                    <div class="one-quarter column orange padded" style="color: #fff;">
+                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">orange</span></p>
+                        <span>One Quarter</span>
+                    </div>
+                    
+                    <div class="one-quarter column yellow padded">
+                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">yellow</span></p>
+                        <span>One Quarter</span>
+                    </div>
+                
+                </div> <!-- end 1/3 quarter columns -->
+        
+        
+                <div class="bb-panel-filler bb-panel-filler-large"></div>
+                
+                <div class="container">
+                    <div class="twelve columns">
+                        <h2 id="gridsystem" class="">Grid System - 12 columns</h2>
+                        <p class="">Classes can be numbers (one, two etc), or in 'one-third' format</p>
+                    </div>
+                </div>
+                    
+                <div class="container gridRow">
+                
+                    <div class="one column">1
+                    </div>
+                
+                    <div class="one column">2
+                    </div>
+                    
+                    <div class="one column">3
+                    </div>
+                    
+                    <div class="one column">4
+                    </div>
+                    
+                    <div class="one column">5
+                    </div>
+                    
+                    <div class="one column">6
+                    </div>
+                    
+                    <div class="one column">7
+                    </div>
+                    
+                    <div class="one column">8
+                    </div>
+                    
+                    <div class="one column">9
+                    </div>
+                    
+                    <div class="one column">10
+                    </div>
+                    
+                    <div class="one column">11
+                    </div>
+                    
+                    <div class="one column">12
+                    </div>
+                
+                </div> <!-- end 12 single columns -->
+                
+                <div class="container gridRow">
+                
+                    <div class="two columns">
+                        <p><span class="chip">two</span> <span class="chip">columns</span></p>
+                        Totam quia non minus iusto earum soluta quas et qui odit quo ad ut. Et aspernatur ipsa odio eveniet reiciendis dolorum porro deleniti tenetur odit a quos aut.
+                    </div>
+                
+                    <div class="two columns">
+                        <p><span class="chip">two</span> <span class="chip">columns</span></p>
+                        Voluptates velit rem molestias autem cum consequatur doloribus hic vel aut qui. In officia amet rerum cum.
+                    </div>
+                    
+                    <div class="two columns">
+                        <p><span class="chip">two</span> <span class="chip">columns</span></p>
+                        Ullam modi quidem aut reiciendis at sequi excepturi voluptatem dolorum fugit ut. Corporis quos repellendus at pariatur quam nihil quibusdam. 
+                    </div>
+                    
+                    <div class="two columns">
+                        <p><span class="chip">two</span> <span class="chip">columns</span></p>
+                        Est voluptas ea impedit molestiae pariatur voluptas. Consectetur doloremque commodi sunt enim porro saepe consequatur dolorem. 
+                    </div>
+                    
+                    <div class="two columns">
+                        <p><span class="chip">two</span> <span class="chip">columns</span></p>
+                        Ratione quos illo sed vel. Ipsa inventore aperiam quis repellendus molestias in ut explicabo ut enim eveniet nostrum dolorum dolorum.  
+                    </div>
+                    
+                    <div class="two columns">
+                        <p><span class="chip">two</span> <span class="chip">columns</span></p>
+                        Non unde et beatae quis officia quia quam est non dolore alias illo doloribus. Excepturi sint necessitatibus molestiae totam quae eos.
+                    </div>
+                
+                </div> <!-- end 6 double columns -->
+                
+                <div class="container gridRow">
+                
+                    <div class="one-quarter column"><p><span class="chip">one-quarter</span> <span class="chip">column</span></p>
+                    One Quarter
+                    </div>
+                
+                    <div class="one-quarter column"><p><span class="chip">one-quarter</span> <span class="chip">column</span></p>
+                    One Quarter
+                    </div>
+                    
+                    <div class="one-quarter column"><p><span class="chip">one-quarter</span> <span class="chip">column</span></p>
+                    One Quarter
+                    </div>
+                    
+                    <div class="one-quarter column"><p><span class="chip">one-quarter</span> <span class="chip">column</span></p>
+                    One Quarter
+                    </div>
+                
+                </div> <!-- end 4 quarter columns -->
+                
+                <div class="container gridRow">
+                
+                    <div class="one-quarter column">
+                        <p><span class="chip">one-quarter</span> <span class="chip">column</span></p>
+                        One Quarter
+                    </div>
+                
+                    <div class="three-quarter column">
+                        <p><span class="chip">three-quarters</span> <span class="chip">column</span></p>
+                        Three Quarters
+                    </div>
+                
+                </div> <!-- end 1/3 quarter columns -->
+                
+                <div class="container gridRow">
+                
+                    <div class="one-half column">
+                        <p><span class="chip">one-half</span> <span class="chip">column</span></p>
+                        One Half
+                    </div>
+                
+                    <div class="one-half column">
+                        <p><span class="chip">six</span> <span class="chip">columns</span></p>
+                        One Half
+                    </div>
+                
+                </div> <!-- end half columns -->
+                
+                <div class="container gridRow">
+                
+                    <div class="one-third column">
+                        <p><span class="chip">one-third</span> <span class="chip">column</span></p>
+                        One Third
+                    </div>
+                
+                    <div class="one-third column">
+                        <p><span class="chip">four</span> <span class="chip">columns</span></p>
+                        One Third
+                    </div>
+                    
+                    <div class="one-third column">
+                        <p><span class="chip">four</span> <span class="chip">columns</span></p>
+                        One Third
+                    </div>
+                
+                </div> <!-- end 3 third columns -->
+                
+                <div class="container gridRow">
+                
+                    <div class="one-third column">
+                        <p><span class="chip">one-third</span> <span class="chip">column</span></p>
+                        One Third
+                    </div>
+                
+                    <div class="two-thirds column">
+                        <p><span class="chip">two-thirds</span> <span class="chip">columns</span></p>
+                        Two Thirds
+                    </div>
+                
+                </div> <!-- end 2 third columns -->
+                
+        
+                {% set contrast_colours = [] %}
+                {% for item in theme_var('colours')|default([]) %}
+                    {% set label = item.label|default('')|trim %}
+                    {% set hex = item.colour|default('')|trim %}
+                    {% if label and hex and label|lower != 'transparent' %}
+                        {% set contrast_colours = contrast_colours|merge([{ label: label, hex: hex }]) %}
+                    {% endif %}
+                {% endfor %}
+
+                <div id="contrastChecker" class="container">
+
+                    <h2 id="contrastheader" class="">Contrast Ratio Calculator</h2>
+                    <hr>
+                    <div class="tabs">
+                        <ul class="tabList" role="tablist" aria-label="Tabs">
+                            <li id="tabLink1" class="active">
+                                <button type="button" role="tab" id="tab-1" data-id="1" aria-selected="true" aria-controls="panel-1">&lt;=18px text</button>
+                            </li>
+                            <li id="tabLink2" class="">
+                                <button type="button" role="tab" id="tab-2" data-id="2" aria-selected="false" aria-controls="panel-2">&gt;18px text</button>
+                            </li>
+                        </ul>
+
+                        <div class="tabsPanel clearfix">
+
+                            <div id="panel-1" class="tabContent active" role="tabpanel" aria-labelledby="tab-1">
+                                {% include 'partials/contrast-grid.html.twig' with {
+                                    colours: contrast_colours,
+                                    threshold: 4.5,
+                                    size_class: 'size16px',
+                                    caption: 'Contrast ratio for smaller than 18px text - must be 4.5 or higher'
+                                } only %}
+                            </div>
+
+                            <div id="panel-2" class="tabContent" role="tabpanel" aria-labelledby="tab-2">
+                                {% include 'partials/contrast-grid.html.twig' with {
+                                    colours: contrast_colours,
+                                    threshold: 3,
+                                    size_class: 'size18px',
+                                    caption: 'Contrast ratio for 18px or larger text - must be 3 or higher'
+                                } only %}
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div> <!-- end ten columm text panel -->
+            
+        </div> <!-- end container -->	
+                
+        <style>
+
+            #styletestSidebar {
+
+                position: sticky;
+                top: 1rem; /* offset below header */
+                max-height: calc(100vh - 2rem);
+                overflow: auto;
+
+                ul {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    li {
+                        margin: 0;
+                        padding: 0;
+                        a {
+                            text-decoration: none;
+                            transition: all 0.2s linear;
+                        }
+                    }
+                }
+                .toc-from-headings a {
+                    display: block;
+                    padding: .25rem 0.5rem;
+                    border-radius: .25rem;
+                    &.is-active {
+                        background: #eee;
+                        font-weight: 700;
+                        transition: all 0.2s linear;
+                    }
+
+                }
+                
+                
+            }
+
+
+            .colours {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .colour {
+                flex: 0 0 5rem;
+                margin: 0 .5rem 1rem 0;
+            }
+
+            .colourSwatch {
+                height: 5rem;
+                margin-bottom: .5rem;
+            }
+
+
+            #styletestContent {
+                overflow: hidden;
+            }
+
+            #contrastChecker {
+                font-size: 16px;
+                padding: 50px 0;
+                h1 {
+                    margin-bottom: 3rem;
+                }
+                p.centre {
+                    padding: 10px 0;
+                    width: 100%;
+                }
+                .size18px {
+                    td div {
+                        font-size: 18.1px;
+                    }
+                }
+                .tabList {
+                    padding: 0;
+                    button {
+                        border-radius: 0;
+                        color: #666;
+                        padding: 15px 30px;
+                        text-transform: none;
+                    }
+                    .active {
+                        button {
+                            color: #054e81;
+                        }
+                    }
+                }
+                .tabs .container {
+                    max-width: 100%;
+                }
+                .columns {
+                    text-align: center;
+                }
+                table {
+                    table-layout: fixed;
+                    text-align: center;
+                    width: 100%;
+                    th {
+                        background: none;
+                        padding: 20px;
+                    }
+                    th .tableHex {
+                        display: none;
+                    }
+                    tbody {
+                        td {
+                            padding: 20px;
+                            vertical-align: middle;
+                            div {
+                                display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                height: 4em;
+                                line-height: 1;
+                                margin: 0 auto;
+                                width: 4em;
+                            }
+                        }
+                    }
+                }
+            }
+            .color-box {
+                border: 1px solid #999;
+                font-size: 16px;
+                padding: 20px;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .grid-item p {
+                margin: 0;
+            }
+
+            .gridRow .chip {
+                background: white;
+            }
+        </style>
+        
+        <script>
+            // Internal TOC nav with hover
+            document.addEventListener('DOMContentLoaded', function () {
+                (function () {
+                const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+                if (!headings.length) return;
+                const ul = document.createElement('ul');
+                ul.className = 'toc-from-headings';
+                headings.forEach(function (heading) {
+                    const id = heading.id;
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = '#' + id;
+                    a.textContent = heading.textContent.trim();
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                });
+                const container = document.getElementById('toc'); // change to your target element
+                if (container) container.appendChild(ul);
+                })();
+        
+                // TOC scroll spy: last heading whose top is at/above OFFSET (stable up & down)
+                const toc = document.querySelector('.toc-from-headings');
+                if (!toc) return;
+                const links = Array.from(toc.querySelectorAll('a[href^="#"]'));
+                const ids = links
+                    .map((a) => a.getAttribute('href').slice(1))
+                    .filter(Boolean);
+                const headings = ids
+                    .map((id) => document.getElementById(id))
+                    .filter(Boolean);
+                if (!headings.length) return;
+                const linkById = new Map(
+                    links.map((a) => [a.getAttribute('href').slice(1), a]),
+                );
+                function setActive(id) {
+                    links.forEach((a) => a.classList.toggle('is-active', false));
+                    const active = linkById.get(id);
+                    if (active) active.classList.add('is-active');
+                }
+                const offset = 120; // align with sticky header / scroll-margin-top
+                function updateTocActive() {
+                    let current = headings[0];
+                    for (let i = 0; i < headings.length; i++) {
+                        if (headings[i].getBoundingClientRect().top <= offset) {
+                            current = headings[i];
+                        }
+                    }
+                    setActive(current.id);
+                }
+                let tocTicking = false;
+                window.addEventListener(
+                    'scroll',
+                    function () {
+                        if (!tocTicking) {
+                            requestAnimationFrame(function () {
+                                updateTocActive();
+                                tocTicking = false;
+                            });
+                            tocTicking = true;
+                        }
+                    },
+                    { passive: true }
+                );
+                updateTocActive();
+
+                // Contrast checker tabs
+                (function () {
+                    const root = document.getElementById('contrastChecker');
+                    if (!root) return;
+                    const tabs = root.querySelectorAll('.tabList [role="tab"]');
+                    const panels = root.querySelectorAll('.tabContent');
+                    tabs.forEach(function (tab) {
+                        tab.addEventListener('click', function () {
+                            const id = tab.getAttribute('data-id');
+                            tabs.forEach(function (t) {
+                                const on = t === tab;
+                                t.setAttribute('aria-selected', on ? 'true' : 'false');
+                                t.parentElement.classList.toggle('active', on);
+                            });
+                            panels.forEach(function (panel) {
+                                panel.classList.toggle('active', panel.id === 'panel-' + id);
+                            });
+                        });
+                    });
+                })();
+
+            });
+        
+        </script>
+    </div>
+{% endblock %}

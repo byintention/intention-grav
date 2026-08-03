@@ -1,0 +1,31 @@
+schema: 1
+id: text
+label: Text + image
+modified: 0
+twig: text
+fields:
+  - name: text_body
+    type: markdown
+    label: Body
+    help: 'Markdown and inline HTML supported.'
+    width: half
+  - name: text_image
+    type: page_media
+    label: Image
+    help: "Pick from this page's media (upload on the Content tab)."
+    width: half
+  - name: text_background
+    type: select
+    label: Background colour
+    default: transparent
+    width: half
+    options:
+      transparent: Transparent
+  - name: text_align
+    type: select
+    label: Textbox position
+    default: right
+    width: half
+    options:
+      left: left
+      right: right

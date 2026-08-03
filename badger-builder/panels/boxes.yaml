@@ -1,0 +1,41 @@
+schema: 1
+id: boxes
+label: Boxes
+modified: 0
+twig: boxes
+fields:
+  - name: boxes_overall_classes
+    type: text
+    label: Overall classes
+    help: 'Extra CSS classes on the outer section element.'
+  - name: boxes_container_classes
+    type: text
+    label: Container classes
+    help: 'Extra CSS classes on the inner container wrapper.'
+  - name: boxes_valign
+    type: select
+    label: Vertical alignment
+    default: stretch
+    options:
+      stretch: Stretch
+      start: Top
+      center: Center
+      end: Bottom
+  - name: boxes_background
+    type: select
+    label: Background colour
+    default: transparent
+    options:
+      transparent: Transparent
+  - name: boxes
+    type: list
+    label: Boxes
+    fields:
+      - name: body
+        type: markdown
+        label: Body
+        help: 'Markdown and inline HTML supported.'
+      - name: classes
+        type: text
+        label: Classes
+        help: 'Extra CSS classes on this box.'

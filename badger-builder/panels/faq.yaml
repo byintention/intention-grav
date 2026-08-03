@@ -1,0 +1,23 @@
+schema: 1
+id: faq
+label: FAQ
+modified: 0
+twig: faq
+fields:
+  - name: faq_background
+    type: select
+    label: Background colour
+    default: transparent
+    options:
+      transparent: Transparent
+  - name: faq
+    type: list
+    label: Items
+    fields:
+      - name: title
+        type: text
+        label: Title
+      - name: content
+        type: markdown
+        label: Content
+        help: 'Markdown and inline HTML supported.'

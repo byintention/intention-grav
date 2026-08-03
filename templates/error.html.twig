@@ -1,8 +1,12 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    <div class="error-page">
-        <h1>{{ page.title|e('html') }}</h1>
-        {{ page.content|raw }}
+    <div class="bb-panel-filler bb-panel-filler-large"></div>
+    <div class="container error-page">
+        <div class="twelve columns centre">
+            <h1>{{ page.title|e('html') }}</h1>
+            {{ page.content|raw }}
+        </div>
     </div>
+    <div class="bb-panel-filler bb-panel-filler-large"></div>
 {% endblock %}

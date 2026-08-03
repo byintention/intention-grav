@@ -1,0 +1,32 @@
+schema: 1
+id: full
+label: Full width
+modified: 0
+twig: full
+fields:
+  - name: full_body
+    type: markdown
+    label: Body
+    help: 'Markdown and inline HTML supported.'
+  - name: full_overall_classes
+    type: text
+    label: Overall classes
+    help: 'Extra CSS classes on the outer section element.'
+    width: third
+  - name: full_background
+    type: select
+    label: Background colour
+    default: transparent
+    width: third
+    options:
+      transparent: Transparent
+  - name: full_width
+    type: range
+    label: Container width
+    default: 100
+    min: 25
+    max: 100
+    step: 1
+    unit: '%'
+    width: third
+    help: 'Width of the inner content area as a percentage of the container.'
