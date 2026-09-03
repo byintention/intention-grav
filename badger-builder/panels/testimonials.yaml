@@ -1,0 +1,26 @@
+schema: 1
+id: testimonials
+label: Testimonials
+modified: 0
+twig: testimonials
+fields:
+  - name: testimonials_heading
+    type: text
+    label: Heading
+    help: 'Optional heading above the quote(s)'
+  - name: testimonials_mode
+    type: select
+    label: Display
+    default: random
+    width: half
+    options:
+      random: Random one
+      all: All published
+  - name: testimonials_background
+    type: select
+    label: Background colour
+    help: 'Colour of the full width background area'
+    default: transparent
+    width: half
+    options:
+      transparent: Transparent

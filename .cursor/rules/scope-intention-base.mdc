@@ -1,0 +1,26 @@
+---
+description: Hard boundary — only edit the intention-base theme tree
+alwaysApply: true
+---
+
+# Scope: intention-base theme only
+
+- **Only modify files under this repository root** (`user/themes/intention-base/`).
+- Do **not** edit `user/config/`, `user/pages/`, other themes, plugins, `system/`, `vendor/`, or parent `grav-admin/.cursor/`.
+- If theme activation or site config is needed, **describe steps for the user**; do not apply them from this workspace.
+
+Examples:
+
+```
+✅ templates/partials/base.html.twig
+✅ css/partials/main.css
+✅ blueprints.yaml
+✅ badger-builder/templates/sections/hero.html.twig
+✅ .cursor/rules/scope-intention-base.mdc
+
+❌ user/config/system.yaml
+❌ user/config/themes/intention-base.yaml
+❌ user/plugins/badger-builder/
+❌ user/themes/intention/
+❌ grav-admin/.cursor/notes/changelog.md
+```

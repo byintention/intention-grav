@@ -2,8 +2,9 @@
 
 {% block content %}
     <div class="styletest">
+        <div class="bb-panel-filler bb-panel-filler-large bg-text"></div>
 
-        <div style="background: #333; padding: 1rem;">
+        <div style="background: var(--colour-text); padding: 2rem;">
             <h1 class="centre" style="color: #fff;  margin:0;">Grid &amp; Style Test</h1>
         </div>
         
@@ -16,7 +17,7 @@
                 <div id="toc"></div>
             </div>
         
-            <div id="styletestContent" class="ten columns clearfix white">
+            <div id="styletestContent" class="ten columns clearfix">
                     
                 <h2 id="palette">Palette</h2>
 
@@ -60,22 +61,15 @@
         
                 <h2 id="typography">Typography</h2>
                 <hr>
-                <p class="largeText">
+                <p class="text-lg">
                     <strong>Nullam luctus sagittis urna.</strong> Vivamus nibh. Fusce
-                    ut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. 
-                    Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum 
-                    enim nibh ac massa. <span class="chip">.largeText</span>
+                    ut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum enim nibh ac massa. <span class="chip">.text-lg</span>
                 </p> 
                 
-                <p>Base text - <strong>Strong</strong> - <em>Emphasis</em> - Lorem ipsum dolor sit amet,
-                consectetuer adipiscing elit. Suspendisse lectus nisl, semper sit amet, blandit at, lacinia 
-                et, sem. Sed pellentesque turpis ut risus. Nullam luctus sagittis urna. Vivamus nibh. Fusce
-                ut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. 
-                Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum 
-                enim nibh ac massa.</p>
+                <p>Base text - <strong>Strong</strong> - <em>Emphasis</em> - Lorem ipsum dolor sit amet, <a href="#">consectetuer adipiscing elit</a>. Suspendisse lectus nisl, semper sit amet, blandit at, lacinia et, sem. Sed pellentesque turpis ut risus. Nullam luctus sagittis urna. Vivamus nibh. Fusce ut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum enim nibh ac massa.</p>
                 
-                <p class="smallText">
-                    <strong>Nullam luctus sagittis urna. Vivamus nibh.</strong> Fusceut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum enim nibh ac massa. <span class="chip">.smallText</span>
+                <p class="text-sm">
+                    <strong>Nullam luctus sagittis urna. Vivamus nibh.</strong> Fusceut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum enim nibh ac massa. <span class="chip">.text-sm</span>
                 </p>
                 
                 <br>
@@ -92,6 +86,12 @@
                 </p>
                 
                 <br>
+
+                <p class="tracking-tight">Tight tracking - Lorem ipsum dolor sit amet, <a href="#">consectetuer adipiscing elit</a>. Suspendisse lectus nisl, semper sit amet, blandit at, lacinia et, sem. Sed pellentesque turpis ut risus. Nullam luctus sagittis urna. Vivamus nibh. Fusce ut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum enim nibh ac massa.</p>
+
+                <p>Normal tracking - Lorem ipsum dolor sit amet, <a href="#">consectetuer adipiscing elit</a>. Suspendisse lectus nisl, semper sit amet, blandit at, lacinia et, sem. Sed pellentesque turpis ut risus. Nullam luctus sagittis urna. Vivamus nibh. Fusce ut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum enim nibh ac massa.</p>
+
+                <p class="tracking-wide">Wide tracking - Lorem ipsum dolor sit amet, <a href="#">consectetuer adipiscing elit</a>. Suspendisse lectus nisl, semper sit amet, blandit at, lacinia et, sem. Sed pellentesque turpis ut risus. Nullam luctus sagittis urna. Vivamus nibh. Fusce ut nunc. Vivamus sed felis. Nam elit diam, auctor eu, eleifend vel, dictum quis, leo. Pellentesque fringilla, tellus quis auctor nonummy, pede lorem varius massa, at vestibulum enim nibh ac massa.</p>
                 
                 <p class="left" style="background:#eee;padding:10px;">Left</p>
                 
@@ -268,23 +268,23 @@
                     
                     <div class="bb-panel-filler smallFill"> </div>
                     
-                    <div class="one-quarter column navy padded" style="color: #fff;">
-                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">navy</span></p>
+                    <div class="one-quarter column bg-text text-white padded">
+                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">text</span></p>
                         One Quarter
                     </div>
                     
-                    <div class="one-quarter column blue padded" style="color: #fff;">
-                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">blue</span></p>
+                    <div class="one-quarter column bg-acid padded">
+                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">acid</span></p>
                         One Quarter
                     </div>
                     
-                    <div class="one-quarter column orange padded" style="color: #fff;">
-                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">orange</span></p>
+                    <div class="one-quarter column bg-background padded">
+                        <p><span class="chip bg-white">one-quarter</span> <span class="chip bg-white">column</span> <span class="chip bg-white">grey</span></p>
                         <span>One Quarter</span>
                     </div>
                     
                     <div class="one-quarter column yellow padded">
-                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">yellow</span></p>
+                        <p><span class="chip">one-quarter</span> <span class="chip">column</span> <span class="chip">default</span></p>
                         <span>One Quarter</span>
                     </div>
                 
@@ -495,7 +495,7 @@
                                     colours: contrast_colours,
                                     threshold: 3,
                                     size_class: 'size18px',
-                                    caption: 'Contrast ratio for 18px or larger text - must be 3 or higher'
+                                    caption: 'Contrast ratio for 24px (or 18px bold) or larger text - must be 3 or higher'
                                 } only %}
                             </div>
 
@@ -513,7 +513,7 @@
             #styletestSidebar {
 
                 position: sticky;
-                top: 1rem; /* offset below header */
+                top: 150px; /* offset below header */
                 max-height: calc(100vh - 2rem);
                 overflow: auto;
 

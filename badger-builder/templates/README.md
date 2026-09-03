@@ -11,5 +11,6 @@ Section markup for Badger panels. Included as `sections/{id}.html.twig`.
 | `sections/filler.html.twig` | Filler |
 | `sections/boxes.html.twig` | Boxes |
 | `sections/faq.html.twig` | FAQ |
+| `sections/testimonials.html.twig` | Testimonials |
 
 Schemas: `../panels/{id}.yaml`. Page shell template stays in the plugin (`badger-builder.html.twig`).

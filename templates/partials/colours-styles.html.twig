@@ -6,8 +6,16 @@
 {% set value = item.colour|default('')|trim %}
 {% if label and value %}
 {% set slug = label|hyphenize %}
-.bg-{{ slug|e('html_attr') }} { background-color: {{ value|e }}; }
-.text-{{ slug|e('html_attr') }} { color: {{ value|e }}; }
+  .bg-{{ slug|e('html_attr') }} { background-color: {{ value|e }}; }
+  .text-{{ slug|e('html_attr') }} { 
+    color: {{ value|e }}; 
+    h1,h2,h3,h4,h5,h6 { 
+      color: {{ value|e }};
+    }
+    a:not(.btn) {
+      color: {{ value|e }}; 
+    } 
+  }
 {% endif %}
 {% endfor %}
 </style>

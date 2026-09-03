@@ -1,22 +1,14 @@
-{% set id = 'panel-' ~ index %}
-{% set image = section.text_image ? page.media[section.text_image] : null %}
-{% set align = section.text_align|default('right') %}
-{% set bg = section.text_background|default('transparent') %}
-{% if bg == 'none' %}{% set bg = 'transparent' %}{% endif %}
+{% set image = bb_site_media(section.text_image ?? null) %}
+{% set image_url = image ? bb_absolute_url(image.url) : null %}
+{% set caption = section.text_image_caption|default('') %}
 
-<section id="{{ id|e('html_attr') }}" class="textImage bb-section bb-panel-text-image bg-{{ bg|e('html_attr') }} box-{{ align|e('html_attr') }}">
-    <div class="container">
-        <div class="text">
-            {% if section.text_body %}
-                <div class="bb-panel-text-body">{{ section.text_body|bb_markdown|raw }}</div>
-            {% endif %}
-        </div>
-        {% if image %}
-        <div class="image">
-            <figure class="bb-panel-text-media">
-                {{ image.html|raw }}
-            </figure>
-        </div>
-        {% endif %}
-    </div>
-</section>
+{% include 'partials/text-image.html.twig' with {
+    id: 'panel-' ~ index,
+    bg: section.text_background|default('transparent'),
+    align: section.text_align|default('right'),
+    extra_classes: section.text_overall_classes|default(''),
+    body: section.text_body ? section.text_body|bb_markdown : '',
+    image_url: image_url,
+    image_alt: section.text_image_alt|default(''),
+    caption: caption ? caption|bb_markdown : '',
+} %}

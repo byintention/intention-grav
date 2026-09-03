@@ -1,44 +1,102 @@
 <!DOCTYPE html>
-<html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}">
+{% set theme_default = theme_var('theme-mode') ?: 'auto' %}
+<html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}"
+      data-theme-default="{{ theme_default|e('html_attr') }}">
     <head>
     {% block head %}
         <meta charset="utf-8" />
         <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="color-scheme" content="light dark">
         {% include 'partials/metadata.html.twig' ignore missing %}
         <link rel="canonical" href="{{ page.url(true, true) }}" />
+        {# Pre-paint theme bootstrap — sets data-theme before CSS paints #}
+        <script>
+        (function () {
+          try {
+            var d = document.documentElement;
+            var stored = localStorage.getItem('intention-base-theme');
+            var pref = stored || d.getAttribute('data-theme-default') || 'auto';
+            var isDark = pref === 'dark' || (pref === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            d.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            d.setAttribute('data-theme-preference', pref);
+            d.classList.toggle('dark', isDark);
+          } catch (e) {}
+        })();
+        </script>
     {% endblock %}
-
+    
     {% block stylesheets %}
+
+        {% if page.header.sections is defined %}
+        {% style %}
+{%- for section in page.header.sections -%}
+{%- set panel = section.panel|default('text') -%}
+{%- if panel == 'full' -%}
+{%- set width = section.full_width|default(100) + 0 -%}
+{%- elseif panel == 'faq' -%}
+{%- set width = (section.faq_width|default(section.full_width|default(100))) + 0 -%}
+{%- else -%}
+{%- set width = 100 -%}
+{%- endif -%}
+{%- if width != 100 -%}
+{%- if panel == 'full' -%}
+@media only screen and (width >= 48rem) {
+  #panel-{{ loop.index }} .text { max-width: {{ width }}%; margin-inline: auto; }
+}
+{% elseif panel == 'faq' %}
+@media only screen and (width >= 48rem) {
+  #panel-{{ loop.index }} .faq-wrapper { max-width: {{ width }}%; margin-inline: auto; }
+}
+{%- endif -%}
+{%- endif -%}
+{%- endfor -%}
+        {% endstyle %}
+        {% endif %}
         {{ assets.css()|raw }}
     {% endblock %}
-
+    
     {% block javascripts %}
         {{ assets.js('head')|raw }}
     {% endblock %}
+
+    <!-- Output theme colours as background/text classes -->
     {% include 'partials/colours-styles.html.twig' %}
+
     </head>
-    <body class="{{ page.header.body_classes }}">
+    <body class="page-{{ page.slug|e('html_attr') }}{% if page.header.body_classes %} {{ page.header.body_classes|e('html_attr') }}{% endif %}">
 
-        <div class="wrap {% if page.header.brand %} {{ page.header.brand|e('html_attr') }}{% endif %}">
+        <div id="top" class="wrap {% if page.header.brand %} {{ page.header.brand|e('html_attr') }}{% endif %}">
             
-    {% block header %}
-        {% include 'partials/header.html.twig' %}
-    {% endblock %}
+        {% block header %}
+            {% include 'partials/header.html.twig' %}
+        {% endblock %}
 
-    <main id="content">
-    {% block body %}
-        {% block content %}{% endblock %}
-    {% endblock %}
-    </main>
-    
-    {% block footer %}
-        {% include 'partials/footer.html.twig' %}
-    {% endblock %}
+        <main id="content">
+        {% block body %}
+            {% block content %}{% endblock %}
+        {% endblock %}
+        </main>
+        
+        {% block footer %}
+            {% include 'partials/footer.html.twig' %}
+        {% endblock %}
 
-    {% block bottom %}
-        {{ assets.js('bottom')|raw }}
-    {% endblock %}
+        {% block bottom %}
+            {{ assets.js('bottom')|raw }}
+        {% endblock %}
+
+        <!-- Conditional load things for admin/non-admin -->
+        <script>
+        (function () {
+            var isAdmin = Object.keys(localStorage).some(function (k) {
+            return k.indexOf('grav_admin_auth') === 0;
+            });
+            if (isAdmin) {
+                console.log('hello admin');    
+            }
+        })();
+        </script>
 
         </div>
     </body>

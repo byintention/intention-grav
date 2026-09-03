@@ -1,0 +1,53 @@
+{% set featured = page.header.featured_image|default('') %}
+{% set alt = page.header.featured_image_alt|default(page.title) %}
+{% set image = null %}
+{% set image_url = null %}
+
+{% if featured and page.media[featured] %}
+    {% set image = page.media[featured] %}
+{% elseif featured %}
+    {% set image = bb_site_media(featured) %}
+{% endif %}
+{% if not image %}
+    {% set image = page.media.images|first %}
+{% endif %}
+{% if image %}
+    {% set image_url = bb_absolute_url(image.url) %}
+{% endif %}
+
+{% if not image_url %}
+    {% for section in page.header.sections|default([]) %}
+        {% if not image_url and (section.hero_image_desktop or section.hero_image) %}
+            {% set hero = bb_site_media(section.hero_image_desktop|default(section.hero_image)) %}
+            {% if hero %}
+                {% set image_url = bb_absolute_url(hero.url) %}
+                {% if not page.header.featured_image_alt and section.hero_image_desktop_alt %}
+                    {% set alt = section.hero_image_desktop_alt %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% set excerpt = page.header.excerpt|default('')|trim %}
+{% set body %}
+    {% include 'partials/project-services.html.twig' with { page: page } %}
+    <h2><a href="{{ page.url }}">{{ page.title|e('html') }}</a></h2>
+    {% if excerpt %}
+        {{ excerpt|markdown|raw }}
+    {% elseif page.summary %}
+        {{ page.summary|raw }}
+    {% endif %}
+    <p><a class="btn" href="{{ page.url }}">View project ➞</a></p>
+{% endset %}
+
+{% include 'partials/text-image.html.twig' with {
+    align: 'left',
+    reverse: reverse|default(false),
+    extra_classes: 'bb-panel-projects-item',
+    body: body,
+    image_url: image_url,
+    image_alt: alt,
+    image_href: page.url,
+    loading: 'lazy',
+} %}

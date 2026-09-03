@@ -1,0 +1,47 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set blog = page.parent %}
+{% set tags = page.taxonomy.tag|default([]) %}
+{% set categories = page.taxonomy.category|default([]) %}
+
+{% block content %}
+<div class="bg-text bb-panel-filler bb-panel-filler-large"></div>
+    <div class="bb-panel-filler bb-panel-filler-small"></div>
+    <article class="container blog-item">
+        <div class="six columns" style="max-width:900px;margin:0 auto;">
+            <div class="blog-header text-centre">
+                {% if blog %}
+                    <p class="text-sm"><a href="{{ blog.url }}">{{ blog.title|e('html') }}</a></p>
+                {% endif %}
+                <h1>{{ page.title|e('html') }}</h1>
+                <div class="text-sm blog-meta">
+                    <p><time datetime="{{ page.date|date('c') }}">{{ page.date|date('j F Y') }}</time></p>
+                    {% for term in categories %}
+                        <span class="chip">{{ term|e('html') }}</span>
+                    {% endfor %}
+                    {% for term in tags %}
+                        <span class="chip">{{ term|e('html') }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% include 'partials/blog-featured-image.html.twig' with { page: page, link: false, loading: 'eager' } %}
+            {{ page.content|raw }}
+        </div>
+    </article>
+
+    {% if not page.isFirst or not page.isLast %}
+        <nav class="container blog-item-nav" aria-label="Post navigation">
+            <div class="six columns">
+                {% if not page.isLast %}
+                    <a href="{{ page.prevSibling.url }}">&larr; {{ page.prevSibling.title|e('html') }}</a>
+                {% endif %}
+            </div>
+            <div class="six columns desk-text-right">
+                {% if not page.isFirst %}
+                    <a href="{{ page.nextSibling.url }}">{{ page.nextSibling.title|e('html') }} &rarr;</a>
+                {% endif %}
+            </div>
+        </nav>
+    {% endif %}
+    <div class="bb-panel-filler bb-panel-filler-medium"></div>
+{% endblock %}

@@ -15,6 +15,7 @@ fields:
   - name: boxes_valign
     type: select
     label: Vertical alignment
+    help: 'How the boxes align to each other'
     default: stretch
     options:
       stretch: Stretch
@@ -24,6 +25,7 @@ fields:
   - name: boxes_background
     type: select
     label: Background colour
+    help: 'Colour of the full width background area'
     default: transparent
     options:
       transparent: Transparent

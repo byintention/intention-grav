@@ -1,0 +1,31 @@
+{% set bg = bg|default('transparent') %}
+{% if bg == 'none' %}{% set bg = 'transparent' %}{% endif %}
+{% set align = align|default('right') %}
+{% set extra = extra_classes|default('') %}
+{% set reverse = reverse|default(false) %}
+{% set image_alt = image_alt|default('') %}
+{% set caption = caption|default('') %}
+{% set image_href = image_href|default('') %}
+{% set loading = loading|default('lazy') %}
+
+<section{% if id|default('') %} id="{{ id|e('html_attr') }}"{% endif %} class="bb-section bb-panel-text-image bg-{{ bg|e('html_attr') }} box-{{ align|e('html_attr') }}{% if reverse %} textimage-reverse{% endif %}{% if extra %} {{ extra|e('html_attr') }}{% endif %}">
+    <div class="container rounded fade-in">
+        <div class="text">
+            {% if body %}
+                <div class="bb-panel-text-body padded">{{ body|raw }}</div>
+            {% endif %}
+        </div>
+        {% if image_url %}
+        <div class="image">
+            <figure class="bb-panel-text-media">
+                {% if image_href %}<a href="{{ image_href|e('html_attr') }}">{% endif %}
+                <img src="{{ image_url|e('html_attr') }}" alt="{{ image_alt|e('html_attr') }}" loading="{{ loading|e('html_attr') }}" decoding="async" />
+                {% if image_href %}</a>{% endif %}
+                {% if caption %}
+                <figcaption class="caption">{{ caption|raw }}</figcaption>
+                {% endif %}
+            </figure>
+        </div>
+        {% endif %}
+    </div>
+</section>

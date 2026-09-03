@@ -11,11 +11,12 @@ fields:
   - name: full_overall_classes
     type: text
     label: Overall classes
-    help: 'Extra CSS classes on the outer section element.'
+    help: 'Extra CSS classes on the outer section element'
     width: third
   - name: full_background
     type: select
     label: Background colour
+    help: 'Colour of full width background area'
     default: transparent
     width: third
     options:
@@ -29,4 +30,4 @@ fields:
     step: 1
     unit: '%'
     width: third
-    help: 'Width of the inner content area as a percentage of the container.'
+    help: 'Width of the inner content area as a percentage of the container'

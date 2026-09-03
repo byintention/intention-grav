@@ -1,0 +1,27 @@
+title: Blog Post
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        blog:
+          type: tab
+          title: Blog Post
+          fields:
+            header.featured_image:
+              type: site_media
+              label: Featured image
+              alt_field: header.featured_image_alt
+              help: Choose from the site media library.
+            header.featured_image_alt:
+              type: text
+              label: Alt text
+              help: Defaults to the post title if left empty.
+            header.excerpt:
+              type: textarea
+              label: Excerpt
+              rows: 4
+              help: Shown on the listing. If empty, Grav uses the summary (text before ===, or a truncated body).

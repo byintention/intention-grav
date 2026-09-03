@@ -1,0 +1,35 @@
+{% set id = 'panel-' ~ index %}
+{% set bg = section.testimonials_background|default('transparent') %}
+{% if bg == 'none' %}{% set bg = 'transparent' %}{% endif %}
+{% set mode = section.testimonials_mode|default('random') %}
+{% set heading = section.testimonials_heading|default('') %}
+{% set flex = grav.get('flex') %}
+{% set directory = flex ? flex.directory('testimonials') : null %}
+{% set published = [] %}
+{% if directory %}
+    {# Admin Next stores the toggle as 1/0; filterBy({ published: true }) misses integer 1. #}
+    {% for object in directory.collection %}
+        {% if object.published %}
+            {% set published = published|merge([object]) %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% set items = [] %}
+{% if published|length %}
+    {% if mode == 'all' %}
+        {% set items = published %}
+    {% else %}
+        {% set items = [random(published)] %}
+    {% endif %}
+{% endif %}
+
+<section id="{{ id|e('html_attr') }}" class="bb-section bb-panel-testimonials bg-{{ bg|e('html_attr') }}">
+    <div class="container">
+        {% if heading %}
+            <h2>{{ heading|e('html') }}</h2>
+        {% endif %}
+        {% for object in items %}
+            {% include 'flex/testimonials/object/quote.html.twig' %}
+        {% endfor %}
+    </div>
+</section>

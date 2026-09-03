@@ -1,6 +1,6 @@
-# thepractice-accrete
+# intention-base
 
-Standalone Grav 2 theme for The Practice / Accrete (WordPress port shell).
+Standalone Grav 2 theme for Intention (WordPress port shell).
 
 No Quark inheritance. Page-builder content will use Badger Builder later.
 
@@ -43,5 +43,6 @@ Example: `templates/styletest.html.twig` + `blueprints/pages/styletest.yaml`.
 
 ## Config
 
-- Theme YAML: `thepractice-accrete.yaml`
-- Active theme: `user/config/system.yaml` → `pages.theme: thepractice-accrete`
+- Theme defaults: `intention-base.yaml` (in this theme folder)
+- Site overrides: `user/config/themes/intention-base.yaml`
+- Active theme: `user/config/system.yaml` → `pages.theme: intention-base`

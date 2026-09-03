@@ -1,0 +1,9 @@
+{% set services = page.taxonomy.service|default([]) %}
+{% if services %}
+    <p class="project-services">
+        {% for term in services %}
+            <span class="chip">{{ term|e('html') }}</span>
+        {% endfor %}
+    </p>
+{% endif %}
+

@@ -1,0 +1,23 @@
+{% set featured = page.header.featured_image|default('') %}
+{% set alt = page.header.featured_image_alt|default(page.title) %}
+{% set image = null %}
+
+{% if featured and page.media[featured] %}
+    {% set image = page.media[featured] %}
+{% elseif featured %}
+    {% set image = bb_site_media(featured) %}
+{% endif %}
+{% if not image %}
+    {% set image = page.media.images|first %}
+{% endif %}
+{% if image %}
+    {% if link %}
+        <a class="newsThumb" href="{{ page.url }}">
+            <img loading="{{ loading|default('lazy') }}" src="{{ image.url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}"  decoding="async">
+        </a>
+    {% else %}
+        <figure class="blog-item-image">
+            <img loading="{{ loading|default('eager') }}" src="{{ image.url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}"  decoding="async">
+        </figure>
+    {% endif %}
+{% endif %}

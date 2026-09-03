@@ -1,0 +1,27 @@
+---
+description: Theme skills policy — no Admin Next skill for standard Twig/blueprints
+alwaysApply: true
+---
+
+# Skills (intention-base theme)
+
+## Default
+
+For **standard theme work** — Twig templates, CSS/JS under `css/`/`js/`, page blueprints, theme `blueprints.yaml` / `intention-base.yaml`, and Badger panel Twig/YAML overrides — **no project skill is required**.
+
+Follow [AGENTS.md](../../AGENTS.md) and the always-applied scope / grav-core / changelog rules.
+
+## When a skill *is* required
+
+If the task involves any of the following, **do not implement yet** until an Admin Next / API skill exists in this repo’s `.cursor/skills/`:
+
+- `onApi*` event handlers
+- Admin Next custom fields, widgets, or `admin-next/` assets
+- Blueprint injection via `onApiBlueprintResolved` (or similar)
+
+Until then, use a **user-layer** approach that stays within normal theme blueprints and Twig, or ask the user to open the **grav-admin** / **badger-builder** workspace where those skills already live.
+
+## Do not
+
+- Copy Badger Builder skills into this theme “just in case”
+- Invent Admin Next integration patterns from memory without a local skill file

@@ -1,0 +1,15 @@
+{% extends 'badger-builder.html.twig' %}
+
+{% block body %}
+    {% set services = page.taxonomy.service|default([]) %}
+    {% if services %}
+        <section class="bb-section bb-panel-project-services">
+            <div class="container">
+                <div class="twelve columns">
+                    {% include 'partials/project-services.html.twig' with { page: page } %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+    {{ parent() }}
+{% endblock %}

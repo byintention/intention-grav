@@ -1,0 +1,10 @@
+<blockquote>
+    {% if object.quote %}
+        <p>{{ object.quote|e('html')|nl2br }}</p>
+    {% endif %}
+    {% if object.name or object.role or object.company %}
+        <cite>{%- if object.name %}{{ object.name|e('html') }}{% endif -%}
+            {%- if object.role %}{% if object.name %}, {% endif %}{{ object.role|e('html') }}{% endif -%}
+            {%- if object.company %}{% if object.name or object.role %}, {% endif %}{{ object.company|e('html') }}{% endif -%}</cite>
+    {% endif %}
+</blockquote>

@@ -1,0 +1,130 @@
+@use 'vars' as *;
+
+@media only screen and ( width <= 80rem ) {
+	.mobilenavopen #nav2 {
+		max-height: 9999px;
+		min-height: 100vh;
+		opacity: 1;
+		transition: all 0.2s linear;
+	}
+	
+	#nav2 {
+		background: rgb(40 40 40 / 97%);
+		box-sizing: border-box;
+		max-height: 0;
+		opacity: 0;
+		overflow: hidden;
+		position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+		text-align: left;
+		transition: all 0.2s linear;
+		width: 100%;
+		z-index: 1500;
+
+		ul {
+			border-top: 1px solid rgb(255 255 255 / 20%);
+			margin: 80px auto ;
+			max-width: 300px;
+			padding: 0;
+
+			li {
+				border-bottom: 1px solid rgb(255 255 255 / 20%);
+				display: block;
+				position: relative;
+				float: none;
+				margin: 0;
+				padding: 0;
+
+				a,
+				a:link,
+				a:visited {
+					color: #fff;
+					display: block;
+					font-size: 20px;
+					font-weight: 500;
+					position: relative;
+					float: none;
+					padding: 10px 0;
+					clear: both;
+					text-decoration: none;
+					text-transform: uppercase;
+					-moz-osx-font-smoothing: grayscale;
+
+					span {
+						display: block;
+						font-size: 15px;
+						opacity: 0.5;
+					}
+				}
+
+				button.sub_nav {
+					background-color: transparent;
+					border: none;
+					cursor: pointer;
+					display: inline-block;
+					font-size: 0;
+					height: 35px;
+					padding: 0;
+					position: absolute;
+						right: 0;
+						top: 8px;
+					margin: 0;
+					padding: 0;
+					transform: rotate(0deg);
+					transition: all .2s linear;
+					width: 35px;
+					z-index: 500;
+					svg {
+						height: auto;
+						width: 30px;
+					}
+					
+				}
+
+				/* Second Level */
+				ul {
+					background: none;
+					border: 0;
+					display: block;
+					margin: 0;
+					max-height: 0;
+					opacity: 0;
+					overflow: hidden;
+					padding: 0;
+					position: relative;
+					transition: max-height 0.2s;
+					width: 100%;
+					z-index: 999999;
+
+					li {
+						&:first-child {
+							border-top: 1px solid rgb(255 255 255 / 20%);
+						}
+						&:last-child {
+							border-bottom: 0;
+						}
+						a,
+						a:link,
+						a:visited {
+							color: #aaa;
+							padding: 10px 0 10px 20px;
+						}
+					}
+				}
+			}
+			li.openSubnav {
+				ul {
+					max-height: 1500px;
+					opacity: 1;
+					transition: all 0.2s;
+				}
+				.sub_nav {
+					transform: rotate(180deg);
+					transition: all .2s linear;
+				}
+			}
+		}
+	}
+}

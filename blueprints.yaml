@@ -1,14 +1,14 @@
-name: The Practice Accrete
-slug: thepractice-accrete
+name: Intention Base
+slug: intention-base
 type: theme
 version: 0.2.0
-description: Standalone Grav 2 theme for The Practice
+description: Standalone Grav 2 theme for Intention
 icon: paint-brush
 author:
-  name: The Practice
-  email: nick@the-practice.co.uk
-homepage: https://the-practice.co.uk
-keywords: thepractice, accrete, theme, custom
+  name: Intention
+  email: hello@byintention.co
+homepage: https://byintention.co
+keywords: intention, theme, custom
 license: MIT
 compatibility:
   grav: ['2.0']
@@ -41,16 +41,61 @@ form:
               label: Email
               help: Primary contact email address.
 
-            address:
-              type: textarea
-              label: Address
-              help: Physical address displayed in the footer.
-              rows: 3
+            company_name:
+              type: text
+              label: Business name
+              help: LocalBusiness schema name shown in the footer.
+
+            street_address:
+              type: text
+              label: Street address
+
+            address_locality:
+              type: text
+              label: Town / city
+
+            address_region:
+              type: text
+              label: County / region
+
+            postal_code:
+              type: text
+              label: Postcode
+
+            google_rating:
+              type: text
+              label: Google rating
+              help: Aggregate star rating shown in the footer schema (e.g. 5).
+
+            google_review_count:
+              type: number
+              label: Google review count
+              help: Number of Google reviews in the footer schema.
 
             social_section:
               type: section
               title: Social Media
               underline: true
+
+            social.bluesky:
+              type: url
+              label: Bluesky
+              help: Full URL to your Bluesky profile.
+
+            social.mastodon:
+              type: url
+              label: Mastodon
+              help: Full URL to your Mastodon profile.
+
+            social.linkedin:
+              type: url
+              label: LinkedIn
+              help: Full URL to your LinkedIn profile or company page.
+
+            social.instagram:
+              type: url
+              label: Instagram
+              help: Full URL to your Instagram profile.
 
             social.facebook:
               type: url
@@ -61,16 +106,6 @@ form:
               type: url
               label: Twitter / X
               help: Full URL to your Twitter/X profile.
-
-            social.instagram:
-              type: url
-              label: Instagram
-              help: Full URL to your Instagram profile.
-
-            social.linkedin:
-              type: url
-              label: LinkedIn
-              help: Full URL to your LinkedIn profile or company page.
 
             notices_section:
               type: section
@@ -103,6 +138,22 @@ form:
               xss_check: false
               height: 220
               menubar: false
+
+            appearance_section:
+              type: section
+              title: Appearance
+              underline: true
+
+            theme-mode:
+              type: select
+              label: Theme Mode Default
+              help: Default appearance before a user makes a choice. Users can still toggle in the header.
+              size: small
+              default: auto
+              options:
+                auto: Auto (follows OS)
+                light: Light
+                dark: Dark
 
             colours_section:
               type: section

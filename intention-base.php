@@ -5,9 +5,9 @@ use Grav\Common\Theme;
 use Twig\TwigFunction;
 
 /**
- * The Practice Accrete — standalone Grav 2 theme (no Quark inheritance).
+ * Intention base — standalone Grav 2 theme (no Quark inheritance).
  */
-class ThepracticeAccrete extends Theme
+class IntentionBase extends Theme
 {
     public static function getSubscribedEvents(): array
     {
@@ -87,6 +87,11 @@ class ThepracticeAccrete extends Theme
         $assets = $this->grav['assets'];
 
         $assets->addCss('theme://css/style.css', 100);
+
+        $assets->addJs('theme://js/theme-toggle.js', [
+            'group' => 'head',
+            'priority' => 100,
+        ]);
 
         $assets->addJs('theme://js/main.js', [
             'group' => 'bottom',

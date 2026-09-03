@@ -1,36 +1,16 @@
     <a class="skipLink" href="#content">Skip to content</a>
-    <header id="header">
+    <header id="header" class="fixed">
         <div class="container">
             <div id="headerMenuMobile"><button class="menu-trigger navclosed"><span>Menu</span></button></div>
             <div id="headerLogo">
                 <a href="{{ home_url }}" title="{{ site.title|e('html_attr') }}">
-                    <img src="{{ url('theme://images/logo.png') }}" alt="{{ site.title|e('html_attr') }}" title="{{ site.title|e('html_attr') }}">
+                    <img src="{{ url('theme://images/logo-intention.svg') }}" alt="{{ site.title|e('html_attr') }}">
                 </a>
             </div>
-            <nav id="nav2" class="clearfix">
-                <ul>
-                    {% for p in pages.children.visible %}
-                        {% set has_children = p.children.visible.count > 0 %}
-                        {% set is_external = p.header.external_url or p.url starts with 'http://' or p.url starts with 'https://' %}
-                        <li class="{% if p.active or p.activeChild %}active{% endif %}{% if has_children %} menu-parent-item{% endif %}">
-                            <a href="{{ p.url }}"{% if is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ p.menu }}</a>
-                            {% if has_children %}
-                                <ul class="sub-menu">
-                                    {% for child in p.children.visible %}
-                                        {% set child_external = child.header.external_url or child.url starts with 'http://' or child.url starts with 'https://' %}
-                                        <li class="{% if child.active %}active{% endif %}">
-                                            <a href="{{ child.url }}"{% if child_external %} target="_blank" rel="noopener noreferrer" class="external"{% endif %}>{{ child.menu }}</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                    <li id="menu-item-115" class="cta">
-                        <a href="https://stadabonehealthhub.co.uk" target="_blank" rel="noopener noreferrer">Healthcare Professionals</a>
-                    </li>
-                </ul>
-            </nav>
+            <div id="headerActions">
+                {{ menu_render('header', { nav_id: 'nav2', nav_class: 'clearfix' }) }}
+                {% include 'partials/theme-toggle.html.twig' %}
+            </div>
         </div>
     </header>
 

@@ -1,0 +1,132 @@
+@use 'vars' as *;
+
+@media only screen and ( width >= 80rem ) {
+	#nav2 {
+		display: block;
+		margin: 0;
+		position: static;
+		text-align: left;
+		ul {
+			display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			li {
+				flex: 0 0 auto;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				position: relative;
+				a {
+					color: var(--lightgrey);
+					display: block;
+					height: 40px;
+					line-height: 40px;
+					margin-right: 2px;
+					padding: 0 30px;
+					text-decoration: none;
+					
+				}
+				a:hover {
+					color: var(--colour-button);
+				}
+				button.sub_nav {
+					display: none;
+				}
+				ul.sub-menu {
+					background: var(--colour-text);
+					border-radius: .25rem;
+					display: block;
+					opacity: 0;
+					padding: 20px 0 20px;
+					pointer-events: none;
+					position: absolute;
+						top: 50px;
+						left: 0;
+					transition: all 0.05s linear;
+					z-index: 200;
+					li {
+						display: block;
+						flex: none;
+						opacity: 1;
+						&.fadeInChildrenLoaded {
+							opacity: 1;
+						}
+						a {
+							border: none;
+							height: auto;
+							line-height: 1.5;
+							margin: 0;
+							padding: 10px 30px;
+							overflow: hidden;
+							transition: all 0.2s ease-in-out;
+							white-space: nowrap;
+							width: auto;
+							&:hover {
+								padding-left: 33px;
+								transition: all 0.2s ease-in-out;
+
+							}
+						}
+					}
+				}
+				&.openSubnav .sub-menu {
+					opacity: 1;
+					pointer-events: auto;
+					top: 40px;
+					transition: all 0.05s linear;
+				}
+				&.menu-parent-item {
+					position: relative;
+					z-index: 400;
+					a {
+						padding-right: 30px;
+					}
+					> a::after {
+						background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23ffffff' fill-rule='evenodd' d='M8.418,0.859 C8.689,0.591 9.127,0.591 9.396,0.859 C9.666,1.127 9.668,1.56 9.396,1.828 L5.488,5.658 C5.218,5.926 4.781,5.926 4.509,5.658 L0.601,1.828 C0.331,1.561 0.331,1.127 0.601,0.859 C0.872,0.591 1.31,0.591 1.579,0.859 L5,4 L8.418,0.859 L8.418,0.859 Z'/%3E%3C/svg%3E");
+						background-position: center center;
+						background-repeat: no-repeat;
+						background-size: auto 8px;
+						content: "";
+						display: inline-block;
+						height: 15px;
+						opacity: 1;
+						position: absolute;
+							right: 12px;
+							top: 11px;
+						transition: all 0.1s linear;
+						vertical-align: middle;
+						width: 15px;
+					}	
+					&.menu-parent-item.openSubnav > a::after {
+						opacity: 0;
+						transition: all 0.1s linear;
+					}
+				}
+			}
+		}
+		> ul {
+			> li {
+			 	&:last-child {
+					a {
+						background: var(--colour-button);
+						border-radius: 1rem;
+						color: var(--colour-text);
+						margin-left: .75rem;
+						&:hover {
+							color: var(--colour-text);
+						}
+					}
+				}
+			}
+		}
+		a.mobile_handle {
+			display: none;
+		}
+	}
+	.navclose {
+		display: none;
+	}
+}

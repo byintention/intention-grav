@@ -1,98 +1,28 @@
 {% set id = 'panel-' ~ index %}
 {% set bg = section.faq_background|default('transparent') %}
 {% if bg == 'none' %}{% set bg = 'transparent' %}{% endif %}
+{% set width = section.faq_width|default(100) %}
 
-<section id="{{ id|e('html_attr') }}" class="faqs bb-panel-faq bg-{{ bg|e('html_attr') }}" itemscope="" itemtype="https://schema.org/FAQPage">
+<section id="{{ id|e('html_attr') }}" class="bb-section bb-panel-faq bg-{{ bg|e('html_attr') }}" itemscope="" itemtype="https://schema.org/FAQPage">
     <div class="container">
 		<div class="faq-wrapper">
-			<div class="faq-question-wrapper">
-            {% if section.faq %}
-                {% for item in section.faq %}
-                    {% if item.title or item.content %}
-                        <div class="faq{% if loop.first %} active{% endif %}" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <button class="showFaq" aria-expanded="false" aria-controls="faq-answer-{{ loop.index }}">Show answer</button>
-						    <h3 class="faq-question" data-questionid="faq-answer-{{ loop.index }}" itemprop="name">{% if item.title %}{{ item.title|e('html') }}{% endif %}</h3>                
-						    <div id="faq-answer-{{ loop.index }}" class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"> 
-                                {% if item.content %}
-							    {{ item.content|bb_markdown|raw }}
-                                {% endif %}
-						    </div>  
-                        </div>
-                    {% endif %}
-                {% endfor %}   
-            {% endif %}
-            </div>
-            <div class="faq-answers-wrapper">
-            {% if section.faq %}
-                {% for item in section.faq %}
-                {% if item.title or item.content %}    
-                <div class="faq {% if loop.first %} active{% endif %}" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">	
-                    <div id="faq-answer-{{ loop.index }}" class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"> 
-                        <h4>{% if item.title %}{{ item.title|e('html') }}{% endif %}</h4>
-                        {% if item.content %}
-						{{ item.content|bb_markdown|raw }}
-                        {% endif %}
+        {% if section.faq %}
+            {% for item in section.faq %}
+                {% if item.title or item.content %}
+                    <div class="faq{% if loop.first %} active{% endif %}" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <button class="showFaq" aria-expanded="{{ loop.first ? 'true' : 'false' }}" aria-controls="faq-answer-{{ loop.index }}"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6">
+                            <path fill-rule="evenodd" d="M8.418,0.859 C8.689,0.591 9.127,0.591 9.396,0.859 C9.666,1.127 9.668,1.56 9.396,1.828 L5.488,5.658 C5.218,5.926 4.781,5.926 4.509,5.658 L0.601,1.828 C0.331,1.561 0.331,1.127 0.601,0.859 C0.872,0.591 1.31,0.591 1.579,0.859 L5,4 L8.418,0.859 L8.418,0.859 Z"/>
+                            </svg>Show answer</button>
+                        <h3 class="faq-question" data-questionid="faq-answer-{{ loop.index }}" itemprop="name">{% if item.title %}{{ item.title|e('html') }}{% endif %}</h3>                
+                        <div id="faq-answer-{{ loop.index }}" class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"> 
+                            {% if item.content %}
+                            {{ item.content|bb_markdown|raw }}
+                            {% endif %}
+                        </div>  
                     </div>
-                </div>
                 {% endif %}
-                {% endfor %}   
-            {% endif %}
-            </div>
-        
+            {% endfor %}   
+        {% endif %}
         </div>
     </div>
 </section>
-
-
-<!--
-<section id="panel<?php echo esc_attr( $counter ); ?>" class="faqs <?php echo esc_attr( get_sub_field( 'background' ) ); ?> <?php echo esc_attr( get_sub_field( 'classes' ) ); ?>" itemscope="" itemtype="https://schema.org/FAQPage">
-	<div class="container">
-		<div class="faq-wrapper">
-			<div class="faq-question-wrapper">
-				<?php
-				if ( have_rows( 'faqs' ) ) {
-					$faq_no = 1;
-					while ( have_rows( 'faqs' ) ) :
-						the_row();
-						?>
-					<div class="faq<?php echo ( 1 === $faq_no ) ? ' active' : ''; ?>" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-						<button class="showFaq" aria-expanded="false" aria-controls="faq-answer-<?php echo esc_attr( $faq_no ); ?>">Show answer</button>		
-						<h3 class="faq-question" data-questionid="faq-answer-<?php echo esc_attr( $faq_no ); ?>" itemprop="name"><?php echo esc_html( get_sub_field( 'faq_question' ) ); ?></h3>	
-						<div id="faq-answer-<?php echo esc_attr( $faq_no ); ?>" class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"> 
-							<?php echo wp_kses_post( get_sub_field( 'faq_answer' ) ); ?>
-						</div>
-					</div>
-						<?php
-						++$faq_no;
-					endwhile;
-				} else {
-					?>
-						<p class="negative">Please add some FAQs!</p>
-				<?php } ?>
-			</div>
-			<div class="faq-answers-wrapper">
-			<?php
-				if ( have_rows( 'faqs' ) ) {
-					$faq_no = 1;
-					while ( have_rows( 'faqs' ) ) :
-						the_row();
-						?>
-					<div class="faq <?php echo ( 1 === $faq_no ) ? ' active' : ''; ?>" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-						
-						<div id="faq-answer-<?php echo esc_attr( $faq_no ); ?>" class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"> 
-							<h4><?php echo esc_html( get_sub_field( 'faq_question' ) ); ?></h4>
-							<?php echo wp_kses_post( get_sub_field( 'faq_answer' ) ); ?>
-						</div>
-					</div>
-						<?php
-						++$faq_no;
-					endwhile;
-				} else {
-					?>
-						<p class="negative">Please add some FAQs!</p>
-				<?php } ?>
-			</div>
-		</div>
-	</div>
-</section>
--->

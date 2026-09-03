@@ -4,25 +4,40 @@ label: Hero
 modified: 0
 twig: hero
 fields:
-  - name: hero_title
-    type: text
-    label: Title
   - name: hero_body
     type: markdown
     label: Body
     help: 'Markdown and inline HTML supported.'
-  - name: hero_image
-    type: page_media
-    label: Background image
-    help: "Pick from this page's media (upload on the Content tab)."
+    width: half
+  - name: hero_image_desktop
+    type: site_media
+    label: Desktop image
+    help: 'Shown from 600px viewport width and up.'
+  - name: hero_image_mobile
+    type: site_media
+    label: Mobile image
+    help: 'Shown below 600px. Falls back to desktop image if empty.'
+  - name: hero_overall_classes
+    type: text
+    label: Overall classes
+    help: 'Extra CSS classes on the outer section element.'
+    width: quarter
+  - name: hero_layout
+    type: select
+    label: Layout
+    default: full-width
+    width: quarter
+    options:
+      full-width: Full width
+      boxed: Boxed
   - name: hero_align
     type: select
-    label: Text alignment
+    label: Text position
     default: center
     width: quarter
     options:
       left: Left
-      center: Center
+      center: Centre
       right: Right
   - name: hero_background
     type: select

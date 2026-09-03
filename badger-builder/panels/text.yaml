@@ -10,22 +10,31 @@ fields:
     help: 'Markdown and inline HTML supported.'
     width: half
   - name: text_image
-    type: page_media
+    type: site_media
     label: Image
-    help: "Pick from this page's media (upload on the Content tab)."
+    help: "Pick or upload from the site media library. Alt text is set in the picker."
     width: half
+  - name: text_image_caption
+    type: text
+    label: Caption
+    help: 'Shown under the image.'
+  - name: text_overall_classes
+    type: text
+    label: Overall classes
+    help: 'Extra CSS classes on the outer section element.'
+    width: third
   - name: text_background
     type: select
     label: Background colour
     default: transparent
-    width: half
+    width: third
     options:
       transparent: Transparent
   - name: text_align
     type: select
     label: Textbox position
     default: right
-    width: half
+    width: third
     options:
       left: left
       right: right

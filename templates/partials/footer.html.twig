@@ -1,3 +1,13 @@
+{% set company_name = theme_var('company_name') %}
+{% set street_address = theme_var('street_address') %}
+{% set address_locality = theme_var('address_locality') %}
+{% set address_region = theme_var('address_region') %}
+{% set postal_code = theme_var('postal_code') %}
+{% set google_rating = theme_var('google_rating') %}
+{% set google_review_count = theme_var('google_review_count') %}
+{% set has_address = street_address or address_locality or address_region or postal_code %}
+{% set has_schema = company_name or has_address or google_rating %}
+
     </main>	
 
     <div id="adverseFooter" class="adverseFooter">
@@ -10,40 +20,43 @@
         </div>
     </div>
 
-    <footer id="footer" class="clear">
+    <footer id="footer" class="clear text-lightgrey">
         <div class="container">
-            <div class="six columns">
-                <img loading="lazy" src="{{ url('theme://images/logo.png') }}" alt="" title="">
+            <div class="four columns footer-logo desk-text-left">
+                <img loading="lazy" src="{{ url('theme://images/logo-intention.svg') }}" alt="{{ site.title|e('html_attr') }}">
+                {% include 'partials/footer-social.html.twig' %}
             </div>
-            <div class="six columns nav">
-                <nav class="clearfix">
-                    <ul id="menu-footer-4" class="menu">
-                        <li id="menu-item-170" class="external"><a href="https://www.thorntonross.com/privacy-policy">Privacy Policy</a></li>
-                        <li id="menu-item-352" class="external"><a href="https://www.thorntonross.com/terms-conditions">Terms and Conditions</a></li>
-                    </ul>	
-                </nav>
+            <div class="four columns footer-nav">
+                {{ menu_render('footer', { ul_id: 'menu-footer-4', ul_class: 'menu' }) }}
             </div>
-        
+            <div class="four columns footer-credits desk-text-right text-sm">
+                &copy; {{ "now"|date('Y') }} Intention web design
+                {% if has_schema %}
+                <div id="rs_container" itemscope itemtype="https://schema.org/LocalBusiness">
+                    {% if company_name %}
+                    <span itemprop="name" id="rs_companyName">{{ company_name|e }}</span>
+                    {% endif %}
+                    {% if has_address %}
+                    <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        {% if street_address %}<span itemprop="streetAddress">{{ street_address|e }}</span>{% if address_locality or address_region or postal_code %}, {% endif %}{% endif %}
+                        {% if address_locality %}<span itemprop="addressLocality">{{ address_locality|e }}</span>{% if address_region or postal_code %}, {% endif %}{% endif %}
+                        {% if address_region %}<span itemprop="addressRegion">{{ address_region|e }}</span>{% if postal_code %}, {% endif %}{% endif %}
+                        {% if postal_code %}<span itemprop="postalCode">{{ postal_code|e }}</span>{% endif %}
+                    </span>
+                    {% endif %}
+                    <img src="{{ url('theme://images/logo-intention.svg', true) }}" alt="{{ (company_name ?: site.title)|e('html_attr') }} logo" class="logo" itemprop="image" loading="lazy"><br>
+                    {% if google_rating and google_review_count %}
+                    <span itemprop="aggregateRating" id="rs_rating" itemscope itemtype="https://schema.org/AggregateRating">
+                        We're rated <span itemprop="ratingValue">{{ google_rating|e }}</span> stars on Google based on <span itemprop="ratingCount">{{ google_review_count|e }}</span> reviews
+                    </span>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
             <div class="btt twelve columns">
-                <a href="#header">Back to the top<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><path  d="M2.582,13.891c-0.272,0.268-0.709,0.268-0.979,0s-0.271-0.701,0-0.969l7.908-7.83c0.27-0.268,0.707-0.268,0.979,0l7.908,7.83c0.27,0.268,0.27,0.701,0,0.969c-0.271,0.268-0.709,0.268-0.978,0L10,6.75L2.582,13.891z"/></svg></a>	
+                <a href="#top">Back to the top<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><path  d="M2.582,13.891c-0.272,0.268-0.709,0.268-0.979,0s-0.271-0.701,0-0.969l7.908-7.83c0.27-0.268,0.707-0.268,0.979,0l7.908,7.83c0.27,0.268,0.27,0.701,0,0.969c-0.271,0.268-0.709,0.268-0.978,0L10,6.75L2.582,13.891z"/></svg></a>	
             </div>
             
         </div>
     </footer>	
-    </div>
-
-
-    <div class="practicePopup popHide">
-        <div class="practicePopupHcp">
-            {% set entry_popup_text = theme_var('entry_popup_text') %}
-            {% if entry_popup_text %}{{ entry_popup_text|bb_markdown|raw }}{% endif %}
-        </div>
-    </div>
-
-    <div class="practicePopupExternal popHide">
-        <div class="practicePopupLink">
-            <button class="popClose">Close modal</button>
-            {% set external_link_popup_text = theme_var('external_link_popup_text') %}
-            {% if external_link_popup_text %}{{ external_link_popup_text|bb_markdown|raw }}{% endif %}
-        </div>
     </div>

@@ -1,0 +1,62 @@
+title: Projects
+child_type: project
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        advanced:
+          fields:
+            columns:
+              fields:
+                column1:
+                  fields:
+                    settings:
+                      fields:
+                        header.child_type:
+                          default: project
+        projects:
+          type: tab
+          title: Projects
+          fields:
+            header.content.items:
+              type: text
+              label: Items
+              default: '@self.children'
+              help: 'Collection selector. Use @self.children to list projects in this folder.'
+            header.content.limit:
+              type: number
+              label: Max item count
+              default: 24
+              validate:
+                type: int
+                min: 1
+            header.content.order.by:
+              type: select
+              label: Order by
+              default: folder
+              options:
+                folder: Folder
+                title: Title
+                date: Date
+                default: Default
+            header.content.order.dir:
+              type: select
+              label: Order
+              default: asc
+              options:
+                desc: Descending
+                asc: Ascending
+            header.content.pagination:
+              type: toggle
+              label: Pagination
+              highlight: 1
+              default: 0
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool

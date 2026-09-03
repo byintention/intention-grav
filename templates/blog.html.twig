@@ -1,0 +1,32 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set collection = page.collection() %}
+
+{% block content %}
+<div class="bg-text bb-panel-filler bb-panel-filler-large"></div>
+    <div class="bb-panel-filler bb-panel-filler-small"></div>
+    <section class="bb-section bb-panel-newscards">
+        
+        <header class="blog-listing-header text-centre">
+            <h1>{{ page.title|e('html') }}</h1>
+            {% if page.content|striptags|trim is not empty %}
+                <div class="blog-listing-intro">{{ page.content|raw }}</div>
+            {% endif %}
+        </header>
+        <div class="bb-panel-filler bb-panel-filler-small"></div>
+        <div class="container">    
+            <div class="blog-listing-articles inner" style="max-width: 900px;">
+                {% if collection.count %}
+                    {% for post in collection %}
+                        {% include 'partials/blog-list-item.html.twig' with { page: post } %}
+                    {% endfor %}
+                {% else %}
+                    <p>No posts yet.</p>
+                {% endif %}
+            </div>
+
+            {% include 'partials/blog-pagination.html.twig' with { total: page.collection('content', false)|length } %}
+        </div>
+    </section>
+    <div class="bb-panel-filler bb-panel-filler-medium"></div>
+{% endblock %}

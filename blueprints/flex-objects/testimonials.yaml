@@ -1,0 +1,146 @@
+title: Testimonials
+description: Reusable quotes for the testimonials panel.
+type: flex-objects
+
+# Flex Configuration
+config:
+  # Administration Configuration
+  admin:
+    # Admin router (optional)
+    router:
+      path: '/testimonials'
+
+    # Admin menu (optional)
+    menu:
+      list:
+        route: '/testimonials'
+        title: Testimonials
+        icon: fa-quote-left
+        # Authorization to collection admin
+        authorize: ['admin.testimonials.list', 'admin.super']
+        # Priority -10 .. 10 (highest goes up)
+        priority: 2
+
+    # Admin template type / folder
+    template: default
+
+    # Permissions
+    permissions:
+      # Primary permissions
+      admin.testimonials:
+        type: crudpl
+        label: Testimonials
+      api.testimonials:
+        type: crudpl
+        label: Testimonials API
+
+    # List view
+    list:
+      title: name
+      fields:
+        published:
+          field:
+            type: toggle
+            label: Publ
+          width: 8
+        name:
+          link: edit
+        company:
+
+    # Edit View
+    edit:
+      title:
+        template: '{{ object.name ?? ''Testimonial'' }}'
+
+    # Preview View
+    preview:
+      enabled: false
+
+    # Data Export
+    export:
+      enabled: true
+      method: 'jsonSerialize'
+      formatter:
+        class: 'Grav\Framework\File\Formatter\YamlFormatter'
+      filename: 'testimonials'
+
+  # Site Configuration
+  site:
+    templates:
+      collection:
+        # Lookup for the template layout files for collections of objects
+        paths:
+          - 'flex/{TYPE}/collection/{LAYOUT}{EXT}'
+      object:
+        # Lookup for the template layout files for objects
+        paths:
+          - 'flex/{TYPE}/object/{LAYOUT}{EXT}'
+      defaults:
+        # Default template {TYPE}; overridden by filename of this blueprint if template folder exists
+        type: testimonials
+        # Default template {LAYOUT}; can be overridden in render calls (usually Twig in templates)
+        layout: quote
+
+  # Data Configuration
+  data:
+    # Object class to be used, allowing custom methods for the object
+    object: 'Grav\Common\Flex\Types\Generic\GenericObject'
+    # Collection class to be used, allowing custom methods for the collections
+    collection: 'Grav\Common\Flex\Types\Generic\GenericCollection'
+    # Index class to be used, works as a quick database-like lookup index
+    index: 'Grav\Common\Flex\Types\Generic\GenericIndex'
+    storage:
+      # Storage class, use single file storage (does not support images and assets)
+      class: 'Grav\Framework\Flex\Storage\SimpleStorage'
+      options:
+        formatter:
+          # File formatter class, in this case the file is stored as JSON
+          class: 'Grav\Framework\File\Formatter\JsonFormatter'
+        # JSON file where all the objects will be stored
+        folder: user-data://flex-objects/testimonials.json
+    search:
+      # Search options
+      options:
+        contains: 1
+      # Fields to be searched
+      fields:
+        - name
+        - company
+        - role
+        - quote
+
+form:
+  validation: loose
+
+  fields:
+    published:
+      type: toggle
+      label: Published
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.YES
+        0: PLUGIN_ADMIN.NO
+      validate:
+        type: bool
+        required: true
+
+    quote:
+      type: textarea
+      label: Quote
+      validate:
+        required: true
+
+    name:
+      type: text
+      label: Name
+      validate:
+        required: true
+
+    role:
+      type: text
+      label: Role
+
+    company:
+      type: text
+      label: Company

@@ -1,4 +1,4 @@
-// practice.js - Main theme JavaScript
+// Main.js - Main theme JavaScript
 
 // DOMContentLoaded - vanilla JS
 document.addEventListener("DOMContentLoaded", function() {
@@ -75,6 +75,26 @@ document.addEventListener("DOMContentLoaded", function() {
 	// Add class when page loaded, this fades page in
 	document.body.classList.toggle('loaded');
 
+	// Header scrolled state (adds .scrolled once user has scrolled down)
+	var header = document.getElementById('header');
+	if (header) {
+		var SCROLL_ON_AT = 20;
+		var SCROLL_OFF_AT = 4;
+		var lastScrolled = false;
+
+		function updateHeaderScroll() {
+			var y = window.scrollY;
+			var scrolled = lastScrolled ? y > SCROLL_OFF_AT : y > SCROLL_ON_AT;
+			if (scrolled !== lastScrolled) {
+				header.classList.toggle('scrolled', scrolled);
+				lastScrolled = scrolled;
+			}
+		}
+
+		window.addEventListener('scroll', updateHeaderScroll, { passive: true });
+		updateHeaderScroll();
+	}
+
 	// Ported from jQuery
 
 	// Mobile nav
@@ -85,33 +105,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			trigger.classList.toggle('navOpen');
 		});
 	});
-
-	// Start HCP popup
-	// Checks to see if that cookie exists, if not then it shows popup
-	if (!document.cookie.match(/^(.*;)?\s*hcpCookie\s*=\s*[^;]+(.*)?$/)) {
-		document.querySelectorAll('.practicePopup').forEach(function (popup) {
-			popup.classList.remove('popHide');
-			popup.classList.add('popShow');
-		});
-		document.body.classList.add('locked');
-	}
-
-	// HCP yes button clicked
-	document.querySelectorAll('.btnYes').forEach(function (btn) {
-		btn.addEventListener('click', function () {
-			var d = new Date();
-			d.setTime(d.getTime() + (360 * 60 * 1000));
-			document.cookie = 'hcpCookie=yes;expires=' + d.toUTCString() + ';path=/';
-			document.querySelectorAll('.practicePopup').forEach(function (popup) {
-				popup.classList.remove('popShow');
-				popup.classList.add('popHide');
-			});
-			if (!document.querySelector('.popShow')) {
-				document.body.classList.remove('locked');
-			}
-		});
-	});
-	// end HCP popup
 
 	// Start external link popup
 	document.querySelectorAll('.external').forEach(function (link) {
@@ -153,6 +146,16 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		});
 		observer.observe(fadeIn);
+	});
+
+	// Stagger fade for boxes panel
+	document.querySelectorAll('.boxfade').forEach(function (panel) {
+		var observer = new IntersectionObserver(function (entries) {
+			if (entries.some(function (entry) { return entry.isIntersecting; })) {
+				panel.classList.add('in-view');
+			}
+		});
+		observer.observe(panel);
 	});
 
 	// Nav dropdowns (migrated from jQuery)

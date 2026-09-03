@@ -1,0 +1,41 @@
+{% set per_page = page.header.content.limit|default(10) %}
+{% set total = total|default(0) %}
+{% set page_count = per_page > 0 ? (total / per_page)|round(0, 'ceil') : 1 %}
+{% set current = uri.currentPage %}
+{% set sep = config.system.param_sep|default(':') %}
+{% set root = page.url(true, true) %}
+{% if root|slice(-1) == '/' %}
+    {% set root = root|slice(0, -1) %}
+{% endif %}
+
+{% if page_count > 1 %}
+    <nav class="blog-pagination twelve columns" aria-label="Blog pages">
+        {% if current > 1 %}
+            {% set prev = current - 1 %}
+            {% set prev_url = prev == 1 ? root : (root ~ '/page' ~ sep ~ prev) %}
+            <a class="blog-pagination-prev" href="{{ prev_url }}" rel="prev">Previous</a>
+        {% else %}
+            <span class="blog-pagination-prev is-disabled">Previous</span>
+        {% endif %}
+
+        <ol class="blog-pagination-pages">
+            {% for n in 1..page_count %}
+                {% set href = n == 1 ? root : (root ~ '/page' ~ sep ~ n) %}
+                <li>
+                    {% if n == current %}
+                        <span class="blog-pagination-page is-current" aria-current="page">{{ n }}</span>
+                    {% else %}
+                        <a class="blog-pagination-page" href="{{ href }}">{{ n }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ol>
+
+        {% if current < page_count %}
+            {% set next_url = root ~ '/page' ~ sep ~ (current + 1) %}
+            <a class="blog-pagination-next" href="{{ next_url }}" rel="next">Next</a>
+        {% else %}
+            <span class="blog-pagination-next is-disabled">Next</span>
+        {% endif %}
+    </nav>
+{% endif %}

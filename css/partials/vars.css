@@ -1,0 +1,56 @@
+@font-face {
+	font-family: "Work Sans";
+	font-style: normal;
+	font-weight: 400;
+	src: local(""), url("../../fonts/work-sans-v18-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Work Sans";
+	font-style: normal;
+	font-weight: 700;
+	src: local(""), url("../../fonts/work-sans-v18-latin-700.woff2") format("woff2");
+}
+
+:root,
+:root[data-theme="light"] {
+	/* Font weights */
+	--light: 100;
+	--regular: 400;
+	--bold: 700;
+
+	/* Base Font */
+	--base-font-family: 'Work sans', -apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
+	--base-font-weight: --regular;
+	--base-font-size: 1rem;
+	--base-line-height: 1.5;
+	--header-font-family: 'Work sans', -apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
+	--quote-font-family: iowan old style, apple garamond, baskerville, times new roman, droid serif, times, source serif pro, serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+
+	/* Colours */
+	--grey: #e6eded;
+	--lightgrey: #f9f9f9;
+	--background: #f9f9f9;
+	--colour-text: #012825;
+	--colour-link: #012825;
+	--colour-link-hover: #00d581;
+	--colour-button: #00d581;
+	--colour-button-hover: #3edf9f;
+	
+	/* Breakpoints */
+	--tablet: 48rem;
+	--desktop: 80rem;
+	--ultrawide: 96rem;	
+}
+
+:root[data-theme="dark"] {
+	color-scheme: dark;
+	--grey: #012825;
+	--background: #012825;
+	--colour-text: #e6eded;
+	--colour-link: #e6eded;
+	--colour-link-hover: #00d581;
+	--colour-button: #00d581;
+	--colour-button-hover: #3edf9f;
+}
+

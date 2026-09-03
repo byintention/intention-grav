@@ -1,0 +1,62 @@
+title: Blog
+child_type: item
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        advanced:
+          fields:
+            columns:
+              fields:
+                column1:
+                  fields:
+                    settings:
+                      fields:
+                        header.child_type:
+                          default: item
+        blog:
+          type: tab
+          title: Blog
+          fields:
+            header.content.items:
+              type: text
+              label: Items
+              default: '@self.children'
+              help: 'Collection selector. Use @self.children to list posts in this folder.'
+            header.content.limit:
+              type: number
+              label: Max item count
+              default: 10
+              validate:
+                type: int
+                min: 1
+            header.content.order.by:
+              type: select
+              label: Order by
+              default: date
+              options:
+                date: Date
+                folder: Folder
+                title: Title
+                default: Default
+            header.content.order.dir:
+              type: select
+              label: Order
+              default: desc
+              options:
+                desc: Descending
+                asc: Ascending
+            header.content.pagination:
+              type: toggle
+              label: Pagination
+              highlight: 1
+              default: 1
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool

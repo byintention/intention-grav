@@ -1,0 +1,42 @@
+{% set featured = page.header.featured_image|default('') %}
+{% set alt = page.header.featured_image_alt|default(page.title) %}
+{% set image = null %}
+{% set image_url = null %}
+
+{% if featured and page.media[featured] %}
+    {% set image = page.media[featured] %}
+{% elseif featured %}
+    {% set image = bb_site_media(featured) %}
+{% endif %}
+{% if not image %}
+    {% set image = page.media.images|first %}
+{% endif %}
+{% if image %}
+    {% set image_url = image.url %}
+{% endif %}
+
+{% if not image_url %}
+    {% for section in page.header.sections|default([]) %}
+        {% if not image_url and (section.hero_image_desktop or section.hero_image) %}
+            {% set hero = bb_site_media(section.hero_image_desktop|default(section.hero_image)) %}
+            {% if hero %}
+                {% set image_url = hero.url %}
+                {% if not page.header.featured_image_alt and section.hero_image_desktop_alt %}
+                    {% set alt = section.hero_image_desktop_alt %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% if image_url %}
+    {% if link %}
+        <a class="newsThumb" href="{{ page.url }}">
+            <img src="{{ image_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}" loading="{{ loading|default('lazy') }}" decoding="async">
+        </a>
+    {% else %}
+        <figure class="blog-item-image">
+            <img src="{{ image_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}" loading="{{ loading|default('eager') }}" decoding="async">
+        </figure>
+    {% endif %}
+{% endif %}

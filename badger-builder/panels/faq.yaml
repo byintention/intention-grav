@@ -4,12 +4,6 @@ label: FAQ
 modified: 0
 twig: faq
 fields:
-  - name: faq_background
-    type: select
-    label: Background colour
-    default: transparent
-    options:
-      transparent: Transparent
   - name: faq
     type: list
     label: Items
@@ -21,3 +15,20 @@ fields:
         type: markdown
         label: Content
         help: 'Markdown and inline HTML supported.'
+  - name: faq_background
+    type: select
+    label: Background colour
+    default: transparent
+    options:
+      transparent: Transparent
+    width: half
+  - name: faq_width
+    type: range
+    label: Container width
+    default: 100
+    min: 25
+    max: 100
+    step: 1
+    unit: '%'
+    width: half
+    help: 'Width of the inner content area as a percentage of the container'

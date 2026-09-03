@@ -1,0 +1,22 @@
+enabled: true
+theme-mode: auto
+phone: ''
+email: ''
+company_name: ''
+street_address: ''
+address_locality: ''
+address_region: ''
+postal_code: ''
+google_rating: ''
+google_review_count: ''
+social:
+  bluesky: ''
+  mastodon: ''
+  linkedin: ''
+  instagram: ''
+  facebook: ''
+  twitter: ''
+entry_popup_text: ''
+external_link_popup_text: ''
+adverse_event_text: ''
+colours: []

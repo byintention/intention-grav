@@ -1,0 +1,41 @@
+title: Project
+'@extends':
+  type: badger-builder
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        project:
+          type: tab
+          title: Listing
+          fields:
+            header.featured_image:
+              type: site_media
+              label: Featured image
+              alt_field: header.featured_image_alt
+              help: 'Used on the projects listing. Choose from site media, or leave empty to use the hero image.'
+            header.featured_image_alt:
+              type: text
+              label: Alt text
+              help: Defaults to the project title if left empty.
+            header.taxonomy.service:
+              type: select
+              label: Services
+              help: Shown on the projects listing and project page.
+              multiple: true
+              options:
+                'Web design': Web design
+                WordPress: WordPress
+                'Grav CMS': Grav CMS
+                Ecommerce: Ecommerce
+                Hosting: Hosting
+                Maintenance: Maintenance
+              validate:
+                type: array
+            header.excerpt:
+              type: textarea
+              label: Teaser
+              rows: 4
+              help: Short summary on the listing. If empty, Grav uses the page summary.

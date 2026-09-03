@@ -4,6 +4,8 @@
  * Keep self-contained; do not @import style.css.
  */
 
+@import 'partials/vars.css';
+
 @font-face {
   font-family: "Spline Sans";
   font-style: normal;
@@ -26,34 +28,35 @@
 }
 
 body {
-  box-sizing: border-box;
-  color: #23185B;
-  font-family: "Spline Sans", arial, sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 0.75rem 1rem;
-  padding: 0;
+  background: var(--background); 
+  color: var(--colour-text);
+	font-size: var(--base-font-size);
+  letter-spacing: -0.05rem;
+	line-height: var(--base-line-height);
+	font-family: var(--base-font-family);
+	font-weight: var(--regular);
 }
 
 body * {
   box-sizing: border-box;
 }
 
-h3 {
-  font-family: "Quicksand", arial, sans-serif;
-  font-size: 1.35rem;
-  font-weight: 700;
-  line-height: 1.3;
-  margin: 0 0 0.75rem;
+h1, h2, h3, h4, h5, h6 {
+	color: var(--colour-text);
+	font-family: var(--header-font-family);
+	font-weight: var(--bold);
+	line-height: 1.2;
+	margin-top: 0;
+	margin-bottom: 1rem;
+	text-wrap: balance;
 }
 
-h4 {
-  font-family: "Quicksand", arial, sans-serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  line-height: 1.3;
-  margin: 0 0 0.75rem;
-}
+h1 { font-size: 2.986rem; }
+h2 { font-size: 2.488rem; }
+h3 { font-size: 1.9rem; }
+h4 { font-size: 1.7rem; }
+h5 { font-size: 1.44rem; }
+h6 { font-size: 1.2rem; }
 
 p {
   margin: 0 0 1rem;
@@ -63,17 +66,16 @@ a {
   color: #0D5FB7;
 }
 
-.smallText {
-  font-size: 0.8rem;
+.text-sm {
+  font-size: 0.875rem;
 }
 
-.largeText {
+.text-lg {
   font-size: 1.2rem;
   line-height: 1.3;
 }
 
-.superLargeText {
-  font-family: "Spline Sans", arial, sans-serif;
+.text-xl {
   font-size: 1.25rem;
   line-height: 1.3;
 }
@@ -138,13 +140,13 @@ a {
 
 a.btn,
 .btn {
-  background-color: #23185B;
+  background-color: var(--colour-button);
   border: 0;
-  border-radius: 50px;
-  color: #fff;
+  border-radius: 4px;
+  color: var(--colour-text);
   cursor: pointer;
   display: inline-block;
-  font-family: "Quicksand", arial, sans-serif;
+  font-family: var(--base-font-family);
   font-size: 1rem;
   font-weight: bold;
   line-height: 1.2;
