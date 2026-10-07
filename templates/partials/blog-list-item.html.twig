@@ -6,13 +6,13 @@
     <div class="padded">
         <h4><a href="{{ page.url }}">{{ page.title|e('html') }}</a></h4>
         <p class="text-sm blog-meta">
-            <time datetime="{{ page.date|date('c') }}">{{ page.date|date('j F Y') }}</time>
             {% for term in categories %}
-                <span class="chip">{{ term|e('html') }}</span>
+                <span class="chipx">{{ term|e('html') }}</span> / 
             {% endfor %}
             {% for term in tags %}
-                <span class="chip">{{ term|e('html') }}</span>
+                <span class="chipx">{{ term|e('html') }}</span>
             {% endfor %}
+            <time datetime="{{ page.date|date('c') }}">{{ page.date|date('j F Y') }}</time>
         </p>
         {% set excerpt = page.header.excerpt|default('')|trim %}
         {% if excerpt %}

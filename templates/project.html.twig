@@ -1,15 +1,21 @@
 {% extends 'badger-builder.html.twig' %}
 
 {% block body %}
-    {% set services = page.taxonomy.service|default([]) %}
-    {% if services %}
-        <section class="bb-section bb-panel-project-services">
-            <div class="container">
-                <div class="twelve columns">
-                    {% include 'partials/project-services.html.twig' with { page: page } %}
-                </div>
-            </div>
-        </section>
-    {% endif %}
     {{ parent() }}
+
+    <div class="project-cta">
+        <div class="container justify-centre">
+            <div class="items-stretch inner bg-acid rounded">
+                <div class="twelve columns padded text-centre">
+                    <h2>Get in touch</h2>
+                    <p>If this is the kind of project you'd like to do, drop us a line for a no obligation chat about how we can help.
+                    </p>
+                    <a href="/contact" class="btn">Contact Us ➞</a>
+                </div>
+                
+            </div>
+            
+        </div>
+        <div class="bb-section bb-panel-filler bb-panel-filler-large"></div>
+    </div>
 {% endblock %}

@@ -1,9 +1,9 @@
-{% set services = page.taxonomy.service|default([]) %}
+{% set project = page|default(grav.page) %}
+{% set services = project.taxonomy.service|default(project.header.taxonomy.service|default([])) %}
 {% if services %}
-    <p class="project-services">
+    <div class="project-services">
         {% for term in services %}
             <span class="chip">{{ term|e('html') }}</span>
         {% endfor %}
-    </p>
+    </div>
 {% endif %}
-

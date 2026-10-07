@@ -12,11 +12,11 @@
 {% endif %}
 {% if image %}
     {% if link %}
-        <a class="newsThumb" href="{{ page.url }}">
+        <a class="newsThumb rounded" href="{{ page.url }}">
             <img loading="{{ loading|default('lazy') }}" src="{{ image.url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}"  decoding="async">
         </a>
     {% else %}
-        <figure class="blog-item-image">
+        <figure class="blog-item-image rounded">
             <img loading="{{ loading|default('eager') }}" src="{{ image.url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}"  decoding="async">
         </figure>
     {% endif %}

@@ -64,7 +64,7 @@
     {% include 'partials/colours-styles.html.twig' %}
 
     </head>
-    <body class="page-{{ page.slug|e('html_attr') }}{% if page.header.body_classes %} {{ page.header.body_classes|e('html_attr') }}{% endif %}">
+    <body class="page-{{ page.slug|e('html_attr') }} template-{{ page.template|e('html_attr') }}{% if page.header.body_classes %} {{ page.header.body_classes|e('html_attr') }}{% endif %}">
 
         <div id="top" class="wrap {% if page.header.brand %} {{ page.header.brand|e('html_attr') }}{% endif %}">
             

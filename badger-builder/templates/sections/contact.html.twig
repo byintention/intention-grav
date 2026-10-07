@@ -1,0 +1,28 @@
+{% set id = 'panel-' ~ index %}
+{% set bg = section.contact_background|default('transparent') %}
+{% if bg == 'none' %}{% set bg = 'transparent' %}{% endif %}
+{% set overall = section.contact_overall_classes|default('') %}
+
+<section id="{{ id|e('html_attr') }}" class="bb-section bb-panel-contact bg-{{ bg|e('html_attr') }}{% if overall %} {{ overall|e('html_attr') }}{% endif %}">
+    <div class="container">
+       
+            <div class="six columns padded">
+                {% if section.contact_body %}
+                    {{ section.contact_body|bb_markdown|raw }}
+                {% endif %}
+            </div>
+            <div class="six columns padded bg-grey" id="quick-contact">
+                <h3>Quick Contact</h3>
+                {% set flashed_form = grav.session.getFlashObject('form') %}
+                {% if flashed_form and flashed_form.message %}
+                    {% set contact_form = flashed_form %}
+                {% else %}
+                    {% set contact_form = form ?? forms() %}
+                {% endif %}
+                {% if contact_form %}
+                    {% include "forms/form.html.twig" with { form: contact_form } %}
+                {% endif %}
+            </div>
+        
+    </div>
+</section>

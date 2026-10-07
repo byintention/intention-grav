@@ -4,15 +4,16 @@
 
 {% block content %}
 <div class="bg-text bb-panel-filler bb-panel-filler-large"></div>
-    <div class="bb-panel-filler bb-panel-filler-small"></div>
+    <div class="bb-panel-filler bb-panel-filler-small bg-grey"></div>
     <section class="bb-section bb-panel-newscards">
         
-        <header class="blog-listing-header text-centre">
+        <header class="blog-listing-header text-centre bg-grey">
             <h1>{{ page.title|e('html') }}</h1>
             {% if page.content|striptags|trim is not empty %}
                 <div class="blog-listing-intro">{{ page.content|raw }}</div>
             {% endif %}
         </header>
+        <div class="bb-panel-filler bb-panel-filler-small bg-grey"></div>
         <div class="bb-panel-filler bb-panel-filler-small"></div>
         <div class="container">    
             <div class="blog-listing-articles inner" style="max-width: 900px;">
@@ -28,5 +29,5 @@
             {% include 'partials/blog-pagination.html.twig' with { total: page.collection('content', false)|length } %}
         </div>
     </section>
-    <div class="bb-panel-filler bb-panel-filler-medium"></div>
+    <div class="bb-panel-filler bb-panel-filler-medium"></div> 
 {% endblock %}

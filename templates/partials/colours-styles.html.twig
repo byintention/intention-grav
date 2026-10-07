@@ -1,6 +1,6 @@
 {% set colours = theme_var('colours') %}
 {% if colours is iterable and colours|length %}
-<style id="practice-colours">
+<style id="theme-colours">
 {% for item in colours %}
 {% set label = item.label|default('')|trim %}
 {% set value = item.colour|default('')|trim %}

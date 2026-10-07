@@ -1,0 +1,22 @@
+schema: 1
+id: contact
+label: Contact
+modified: 0
+twig: contact
+fields:
+  - name: contact_body
+    type: markdown
+    label: Details
+    help: 'Left column. Markdown and inline HTML supported.'
+  - name: contact_overall_classes
+    type: text
+    label: Overall classes
+    help: 'Extra CSS classes on the outer section element.'
+    width: half
+  - name: contact_background
+    type: select
+    label: Background colour
+    default: transparent
+    width: half
+    options:
+      transparent: Transparent
