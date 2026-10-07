@@ -25,7 +25,7 @@
 
 		ul {
 			border-top: 1px solid rgb(255 255 255 / 20%);
-			margin: 80px auto ;
+			margin: 6rem auto ;
 			max-width: 300px;
 			padding: 0;
 
@@ -49,9 +49,7 @@
 					padding: 10px 0;
 					clear: both;
 					text-decoration: none;
-					text-transform: uppercase;
 					-moz-osx-font-smoothing: grayscale;
-
 					span {
 						display: block;
 						font-size: 15px;
@@ -78,7 +76,10 @@
 					z-index: 500;
 					svg {
 						height: auto;
-						width: 30px;
+						width: 25px;
+						path {
+							fill: white;
+						}
 					}
 					
 				}
