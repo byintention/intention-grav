@@ -1,0 +1,67 @@
+{% set meta = page.metadata %}
+{% set og_title = page.title ? page.title ~ ' | ' ~ site.title : site.title %}
+{% set og_description = page.header.metadata.description|default(site.metadata.description|default('')) %}
+{% set og_type = page.template == 'item' ? 'article' : 'website' %}
+
+{% set og_image = null %}
+{% set og_alt = page.header.featured_image_alt|default('') %}
+{% set featured = page.header.featured_image|default('') %}
+
+{% if featured and page.media[featured] %}
+    {% set og_image = page.media[featured] %}
+{% elseif featured %}
+    {% set og_image = bb_site_media(featured) %}
+{% endif %}
+
+{% if not og_image %}
+    {% set og_image = page.media.images|first %}
+{% endif %}
+
+{% if not og_image %}
+    {% set hero = page.header.sections|default([])|reduce((carry, section) => carry.image ? carry : {
+        image: bb_site_media(section.hero_image_desktop|default(section.hero_image|default(''))),
+        alt: section.hero_image_desktop_alt|default(section.hero_image_alt|default(''))
+    }, {image: null, alt: ''}) %}
+    {% if hero.image %}
+        {% set og_image = hero.image %}
+        {% if not og_alt %}
+            {% set og_alt = hero.alt %}
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+{% set og_image_url = '' %}
+{% if og_image %}
+    {% set og_image_url = og_image.url|bb_absolute_url %}
+{% else %}
+    {% set fallback = theme_var('og_image') %}
+    {% set fallback_first = (fallback is iterable and fallback|length > 0) ? fallback|first : null %}
+    {% set fallback_file = fallback_first.name|default('') %}
+    {% if fallback_file %}
+        {% set og_image_url = url('theme://images/og/' ~ fallback_file)|bb_absolute_url %}
+    {% endif %}
+{% endif %}
+
+{% set og_alt = og_alt|default(page.title) %}
+
+{% if meta['og:title'] is not defined %}
+<meta property="og:title" content="{{ og_title|e('html_attr') }}" />
+{% endif %}
+{% if meta['og:site_name'] is not defined %}
+<meta property="og:site_name" content="{{ site.title|e('html_attr') }}" />
+{% endif %}
+{% if og_description and meta['og:description'] is not defined %}
+<meta property="og:description" content="{{ og_description|e('html_attr') }}" />
+{% endif %}
+{% if meta['og:url'] is not defined %}
+<meta property="og:url" content="{{ page.url(true, true)|e('html_attr') }}" />
+{% endif %}
+{% if meta['og:type'] is not defined %}
+<meta property="og:type" content="{{ og_type|e('html_attr') }}" />
+{% endif %}
+{% if og_image_url and meta['og:image'] is not defined %}
+<meta property="og:image" content="{{ og_image_url|e('html_attr') }}" />
+{% endif %}
+{% if og_image_url and og_alt and meta['og:image:alt'] is not defined %}
+<meta property="og:image:alt" content="{{ og_alt|e('html_attr') }}" />
+{% endif %}

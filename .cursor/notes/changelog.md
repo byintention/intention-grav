@@ -1,4 +1,7 @@
 2026-10-08
+Per-page Open Graph tags from title, description, URL, and featured or hero image, with a theme fallback.
+
+2026-10-08
 Footer social profile URLs render as plain https:// hrefs.
 
 2026-09-02

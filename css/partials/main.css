@@ -1738,7 +1738,9 @@ input[type="checkbox"] {
 
 	@media only screen and ( width >= 48rem ) {
 		.bb-panel-boxes {
-			
+			.container {
+				display: block;
+			}
 			.normal {
 				align-items: normal;
 			}
@@ -1750,7 +1752,6 @@ input[type="checkbox"] {
 			.middle {
 				align-items: center;
 			}
-
 			.box {
 				margin-bottom: 0;
 			}

@@ -155,6 +155,17 @@ form:
                 light: Light
                 dark: Dark
 
+            og_image:
+              type: file
+              label: Default share image
+              help: PNG, JPEG, or WebP used for Open Graph when a page has no featured or hero image. Saved to user/themes/intention-base/images/og.
+              destination: 'theme://images/og'
+              multiple: false
+              accept:
+                - image/png
+                - image/jpeg
+                - image/webp
+
             colours_section:
               type: section
               title: Colours
