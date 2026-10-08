@@ -1,3 +1,6 @@
+2026-10-08
+Footer social profile URLs render as plain https:// hrefs.
+
 2026-09-02
 Bluesky footer icon padded into a square viewBox so it matches the other 24px social icons.
 
