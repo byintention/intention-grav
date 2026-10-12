@@ -16,7 +16,7 @@ body {
 	font-weight: var(--regular);
 	letter-spacing: -0.05rem;
 	text-size-adjust: none;
-	opacity: 0;
+	opacity: 1;
 	transition: opacity 0.5s linear;
 	&.loaded {
 		opacity: 1;
