@@ -5,6 +5,10 @@
 {% set mobile = mobile_path ? bb_site_media(mobile_path) : null %}
 {% set desktop_url = desktop ? bb_absolute_url(desktop.url) : null %}
 {% set mobile_url = mobile ? bb_absolute_url(mobile.url) : null %}
+{% set desktop_width = desktop ? desktop.width|default(0) : 0 %}
+{% set desktop_height = desktop ? desktop.height|default(0) : 0 %}
+{% set mobile_width = mobile ? mobile.width|default(0) : 0 %}
+{% set mobile_height = mobile ? mobile.height|default(0) : 0 %}
 {% set alt = section.hero_image_desktop_alt|default(section.hero_image_alt|default('')) %}
 {% set align = section.hero_align|default('center') %}
 {% set align_class = align == 'left' ? 'text-left' : (align == 'right' ? 'text-right' : 'text-centre') %}
@@ -21,12 +25,12 @@
             {% if has_picture %}
             <picture>
                 {% if desktop_url and mobile_url %}
-                <source media="(min-width: 600px)" srcset="{{ desktop_url|e('html_attr') }}">
-                <img src="{{ mobile_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}" loading="eager" decoding="async">
+                <source media="(min-width: 600px)" srcset="{{ desktop_url|e('html_attr') }}"{% if desktop_width > 0 and desktop_height > 0 %} width="{{ desktop_width }}" height="{{ desktop_height }}"{% endif %}>
+                <img src="{{ mobile_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}"{% if mobile_width > 0 and mobile_height > 0 %} width="{{ mobile_width }}" height="{{ mobile_height }}"{% endif %} loading="eager" decoding="async">
                 {% elseif desktop_url %}
-                <img src="{{ desktop_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}" loading="eager" decoding="async">
+                <img src="{{ desktop_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}"{% if desktop_width > 0 and desktop_height > 0 %} width="{{ desktop_width }}" height="{{ desktop_height }}"{% endif %} loading="eager" decoding="async">
                 {% else %}
-                <img src="{{ mobile_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}" loading="eager" decoding="async">
+                <img src="{{ mobile_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}"{% if mobile_width > 0 and mobile_height > 0 %} width="{{ mobile_width }}" height="{{ mobile_height }}"{% endif %} loading="eager" decoding="async">
                 {% endif %}
             </picture>
             <div class="bannerTint" aria-hidden="true"></div>
@@ -48,12 +52,12 @@
         {% if has_picture %}
         <picture>
             {% if desktop_url and mobile_url %}
-            <source media="(min-width: 600px)" srcset="{{ desktop_url|e('html_attr') }}">
-            <img src="{{ mobile_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}" loading="eager" decoding="async">
+            <source media="(min-width: 600px)" srcset="{{ desktop_url|e('html_attr') }}"{% if desktop_width > 0 and desktop_height > 0 %} width="{{ desktop_width }}" height="{{ desktop_height }}"{% endif %}>
+            <img src="{{ mobile_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}"{% if mobile_width > 0 and mobile_height > 0 %} width="{{ mobile_width }}" height="{{ mobile_height }}"{% endif %} loading="eager" decoding="async">
             {% elseif desktop_url %}
-            <img src="{{ desktop_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}" loading="eager" decoding="async">
+            <img src="{{ desktop_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}"{% if desktop_width > 0 and desktop_height > 0 %} width="{{ desktop_width }}" height="{{ desktop_height }}"{% endif %} loading="eager" decoding="async">
             {% else %}
-            <img src="{{ mobile_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}" loading="eager" decoding="async">
+            <img src="{{ mobile_url|e('html_attr') }}" alt="{{ alt|e('html_attr') }}"{% if mobile_width > 0 and mobile_height > 0 %} width="{{ mobile_width }}" height="{{ mobile_height }}"{% endif %} loading="eager" decoding="async">
             {% endif %}
         </picture>
         <div class="bannerTint" aria-hidden="true"></div>

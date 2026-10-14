@@ -1,5 +1,7 @@
 {% set image = bb_site_media(section.text_image ?? null) %}
 {% set image_url = image ? bb_absolute_url(image.url) : null %}
+{% set image_width = image ? image.width|default(0) : 0 %}
+{% set image_height = image ? image.height|default(0) : 0 %}
 {% set caption = section.text_image_caption|default('') %}
 
 {% include 'partials/text-image.html.twig' with {
@@ -9,6 +11,8 @@
     extra_classes: section.text_overall_classes|default(''),
     body: section.text_body ? section.text_body|bb_markdown : '',
     image_url: image_url,
+    image_width: image_width,
+    image_height: image_height,
     image_alt: section.text_image_alt|default(''),
     caption: caption ? caption|bb_markdown : '',
 } %}

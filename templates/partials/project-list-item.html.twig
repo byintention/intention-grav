@@ -2,6 +2,8 @@
 {% set alt = page.header.featured_image_alt|default(page.title) %}
 {% set image = null %}
 {% set image_url = null %}
+{% set image_width = 0 %}
+{% set image_height = 0 %}
 
 {% if featured and page.media[featured] %}
     {% set image = page.media[featured] %}
@@ -13,6 +15,8 @@
 {% endif %}
 {% if image %}
     {% set image_url = bb_absolute_url(image.url) %}
+    {% set image_width = image.width|default(0) %}
+    {% set image_height = image.height|default(0) %}
 {% endif %}
 
 {% if not image_url %}
@@ -21,6 +25,8 @@
             {% set hero = bb_site_media(section.hero_image_desktop|default(section.hero_image)) %}
             {% if hero %}
                 {% set image_url = bb_absolute_url(hero.url) %}
+                {% set image_width = hero.width|default(0) %}
+                {% set image_height = hero.height|default(0) %}
                 {% if not page.header.featured_image_alt and section.hero_image_desktop_alt %}
                     {% set alt = section.hero_image_desktop_alt %}
                 {% endif %}
@@ -47,6 +53,8 @@
     extra_classes: 'bb-panel-projects-item',
     body: body,
     image_url: image_url,
+    image_width: image_width,
+    image_height: image_height,
     image_alt: alt,
     image_href: page.url,
     loading: 'lazy',

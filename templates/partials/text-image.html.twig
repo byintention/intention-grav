@@ -7,6 +7,8 @@
 {% set caption = caption|default('') %}
 {% set image_href = image_href|default('') %}
 {% set loading = loading|default('lazy') %}
+{% set image_width = image_width|default(0) %}
+{% set image_height = image_height|default(0) %}
 
 <section{% if id|default('') %} id="{{ id|e('html_attr') }}"{% endif %} class="bb-section bb-panel-text-image bg-{{ bg|e('html_attr') }} box-{{ align|e('html_attr') }}{% if reverse %} textimage-reverse{% endif %}{% if extra %} {{ extra|e('html_attr') }}{% endif %}">
     <div class="container rounded fade-in">
@@ -19,7 +21,7 @@
         <div class="image">
             <figure class="bb-panel-text-media">
                 {% if image_href %}<a href="{{ image_href|e('html_attr') }}">{% endif %}
-                <img src="{{ image_url|e('html_attr') }}" alt="{{ image_alt|e('html_attr') }}" loading="{{ loading|e('html_attr') }}" decoding="async" />
+                <img src="{{ image_url|e('html_attr') }}" alt="{{ image_alt|e('html_attr') }}"{% if image_width > 0 and image_height > 0 %} width="{{ image_width }}" height="{{ image_height }}"{% endif %} loading="{{ loading|e('html_attr') }}" decoding="async" />
                 {% if image_href %}</a>{% endif %}
                 {% if caption %}
                 <figcaption class="caption">{{ caption|raw }}</figcaption>
