@@ -24,6 +24,8 @@ intention-base/
     rules/scope-intention-base.mdc
     rules/skills.mdc
     rules/changelog.mdc
+    rules/plans.mdc
+    plans/
     notes/changelog.md
 
 badger-builder/
@@ -34,12 +36,14 @@ badger-builder/
     rules/conventions.mdc
     rules/skills.mdc
     rules/changelog.mdc
+    rules/plans.mdc
+    plans/
     skills/grav-api-admin-next-integration.md
     skills/grav-api-integration.md
     notes/changelog.md
 ```
 
-Parent `grav-admin/.cursor/rules/` is **integration-only** (`alwaysApply: false` on grav, skills, changelog). Only `integration-scope.mdc` auto-applies when the workspace root is `grav-admin/`.
+Parent `grav-admin/.cursor/rules/` is **integration-only** (`alwaysApply: false` on grav, skills, changelog). `plans.mdc` auto-applies in each product workspace and at the grav-admin root, and plans are written in that workspace's `.cursor/plans/`.
 
 ## Optional: separate git repos + symlinks
 

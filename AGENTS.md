@@ -66,6 +66,10 @@ title: My Template
 - Theme class: [`intention-base.php`](intention-base.php) (`Grav\Theme\IntentionBase`).
 - Prefer Twig + blueprints for presentation/settings; use PHP hooks only when Twig cannot do the job.
 
+## Plans
+
+Write plans in [`.cursor/plans/`](.cursor/plans/). If Cursor saves a plan under the home directory, move it here before the planning turn ends.
+
 ## Changelog
 
 After completing a task, prepend two lines to [`.cursor/notes/changelog.md`](.cursor/notes/changelog.md) (date + ≤30-word summary). Do not write to parent `grav-admin/.cursor/notes/changelog.md`.

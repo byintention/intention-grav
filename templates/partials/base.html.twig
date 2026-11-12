@@ -5,7 +5,8 @@
     <head>
     {% block head %}
         <meta charset="utf-8" />
-        <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+        {% set seo_title = page.header.seo.title|default('')|trim %}
+        <title>{% if seo_title %}{{ seo_title|e('html') }}{% elseif page.title %}{{ page.title|e('html') }} | {{ site.title|e('html') }}{% else %}{{ site.title|e('html') }}{% endif %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="color-scheme" content="light dark">
         <link rel="icon" type="image/x-icon" href="{{ url('theme://images/favicon.ico') }}" />

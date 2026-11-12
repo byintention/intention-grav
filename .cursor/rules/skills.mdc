@@ -9,7 +9,7 @@ alwaysApply: true
 
 For **standard theme work** — Twig templates, CSS/JS under `css/`/`js/`, page blueprints, theme `blueprints.yaml` / `intention-base.yaml`, and Badger panel Twig/YAML overrides — **no project skill is required**.
 
-Follow [AGENTS.md](../../AGENTS.md) and the always-applied scope / grav-core / changelog rules.
+Follow [AGENTS.md](../../AGENTS.md) and the always-applied scope / grav-core / changelog / plans rules.
 
 ## When a skill *is* required
 
